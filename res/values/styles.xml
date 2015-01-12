@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:custom="http://schemas.android.com/apk/res/com.custom.project">
 
+    <!--Боковое меню-->
     <style name="LeftMenuButton">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
@@ -10,6 +11,24 @@
         <item name="android:paddingRight">16dp</item>
         <item name="android:background">@drawable/activated_background</item>
         <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/left_menu_button_text</item>
+        <item name="android:textSize">@dimen/left_menu_button_text_size</item>
+    </style>
+
+
+    <!--Верхняя панелька-->
+    <style name="MyTheme" parent="@android:style/Theme.Holo">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+    </style>
+    
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name = "android:width">0dp</item>
+        <item name="android:background">@color/left_menu_button</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:titleTextStyle">@style/TitleTextColor</item>
+    </style>
+    
+    <style name="TitleTextColor">
         <item name="android:textColor">@color/left_menu_button_text</item>
         <item name="android:textSize">@dimen/left_menu_button_text_size</item>
     </style>
