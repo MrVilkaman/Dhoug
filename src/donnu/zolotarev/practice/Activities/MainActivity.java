@@ -2,18 +2,18 @@ package donnu.zolotarev.practice.Activities;
 
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SlidingPaneLayout;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import donnu.zolotarev.practice.Fragments.LeftMenuFragmenu;
 import donnu.zolotarev.practice.Fragments.MainFragment;
 import donnu.zolotarev.practice.R;
 
 public class MainActivity extends SingleFragmentActivity {
 
-    private DrawerLayout drawerLayout;
-    private ListView drawerList;
+    private SlidingPaneLayout drawerLayout;
+
 
     @Override
     protected Fragment createFragment() {
@@ -29,12 +29,16 @@ public class MainActivity extends SingleFragmentActivity {
     }
 
     private void createLeftPanel() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerList = (ListView) findViewById(R.id.left_drawer);
+        drawerLayout = (SlidingPaneLayout) findViewById(R.id.drawer_layout);
+        FragmentManager fm = getFragmentManager();
+        Fragment myFragment = fm.findFragmentById(R.id.menu_frame);
 
-        String[] mScreenTitles = getResources().getStringArray(R.array.screen_array);
-        drawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.list_item_drawer, mScreenTitles));
+        if (myFragment == null){
+            myFragment = new LeftMenuFragmenu();
+            fm.beginTransaction()
+                    .add(R.id.menu_frame, myFragment)
+                    .commit();
+        }
 
     }
 
@@ -44,16 +48,13 @@ public class MainActivity extends SingleFragmentActivity {
         int itemId = item.getItemId();
         switch (itemId) {
             case android.R.id.home:
-                if (drawerLayout.isDrawerOpen(drawerList)) {
-                    drawerLayout.closeDrawer(drawerList);
+                if (drawerLayout.isOpen()) {
+                    drawerLayout.closePane();
                 }else {
-                    drawerLayout.openDrawer(drawerList);
+                    drawerLayout.openPane();
                 }
-                // Toast.makeText(this, "home pressed", Toast.LENGTH_LONG).show();
                 break;
-
         }
-
         return true;
     }
 
@@ -64,6 +65,5 @@ public class MainActivity extends SingleFragmentActivity {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-
     }
 }

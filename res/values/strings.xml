@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name = "app_name">BestPractice</string>
+    <string name = "app_name">Dhoug</string>
 
-    <string-array name="screen_array">
-        <item>Screen 1</item>
-        <item>Screen 2</item>
-        <item>Screen 3</item>
-    </string-array>
+    <!--Левое меню-->
+    <string name = "left_menu_goals">Цели</string>
+    <string name = "left_menu_nots">Заметки</string>
+    <string name = "left_menu_tasks">Задачи</string>
+    <string name = "left_menu_buys">Список покупок</string>
+
+    <string name = "left_menu_settings">Настройки</string>
+    <string name = "left_menu_info">Информация</string>
+    <string name = "left_menu_search">Поиск</string>
+
+
+
 </resources>

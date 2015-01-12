@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="blue">#FF33B5E5</color>
+    <color name="left_menu_button_click">#112233</color>
+    <color name="left_menu_button">#223344</color>
+    <color name="left_menu_button_text">#ffffff</color>
 </resources>
