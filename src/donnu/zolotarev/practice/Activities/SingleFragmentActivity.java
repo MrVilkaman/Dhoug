@@ -11,7 +11,7 @@ public abstract class SingleFragmentActivity extends Activity {
     protected abstract Fragment createFragment();
 
     protected int getContainerID(){
-        return R.id.fragmentContainer;
+        return R.id.content_frame;
     }
 
 
