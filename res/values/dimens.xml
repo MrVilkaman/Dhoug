@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--common-->
+    <dimen name="title_text_size">26dp</dimen>
+    <dimen name="primary_text_size">22dp</dimen>
+    <dimen name="secondary_text_size">18dp</dimen>
+
+    <!--Left menu-->
+    <dimen name="left_menu_button_text_size">@dimen/primary_text_size</dimen>
+</resources>

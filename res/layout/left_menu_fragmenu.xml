@@ -11,15 +11,19 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
         <Button style="@style/LeftMenuButton"
+                android:drawableLeft="@drawable/ic_action_goals"
                 android:id="@+id/left_menu_goals"
                 android:text="@string/left_menu_goals"/>
         <Button style="@style/LeftMenuButton"
+                android:drawableLeft="@drawable/ic_action_nots"
                 android:id="@+id/left_menu_nots"
                 android:text="@string/left_menu_nots"/>
         <Button style="@style/LeftMenuButton"
+                android:drawableLeft="@drawable/ic_action_tasks"
                 android:id="@+id/left_menu_tasks"
                 android:text="@string/left_menu_tasks"/>
         <Button style="@style/LeftMenuButton"
+                android:drawableLeft="@drawable/ic_action_buys"
                 android:id="@+id/left_menu_buys"
                 android:text="@string/left_menu_buys"/>
     </LinearLayout>
@@ -32,12 +36,15 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
         <Button style="@style/LeftMenuButton"
+                android:drawableLeft="@drawable/ic_action_settings"
                 android:id="@+id/left_menu_settings"
                 android:text="@string/left_menu_settings"/>
         <Button style="@style/LeftMenuButton"
-                android:id="@+id/left_menu_info"
-                android:text="@string/left_menu_info"/>
+                android:drawableLeft="@drawable/ic_action_about"
+                android:id="@+id/left_menu_about"
+                android:text="@string/left_menu_about"/>
         <Button style="@style/LeftMenuButton"
+                android:drawableLeft="@drawable/ic_action_search"
                 android:id="@+id/left_menu_search"
                 android:text="@string/left_menu_search"/>
 
