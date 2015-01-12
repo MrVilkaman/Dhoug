@@ -13,5 +13,10 @@
 
     <!--Цели -->
     <color name="goals_text_color">#33b5e5</color>
-    <color name="goals_backgrond_color">#D3D3D3</color>
+    <color name="goals_backgrond_color">#f0f0f0</color>
+
+    <color name="goal_item_title_text_color">@android:color/black</color>
+    <color name="goal_item_sub_title_text_color">#dbdbdb</color>
+
+    <color name="goal_item_backgrond_color">#fff</color>
 </resources>

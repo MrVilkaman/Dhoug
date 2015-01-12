@@ -16,6 +16,9 @@
     <!--Заглушки-->
     <string name="data_stub">13 января 2015</string>
     <string name="week_stub">Неделя</string>
+    <string name="title_stub">Заголовок</string>
+    <string name="sub_title_stub">Описание ну оооочень длинное! Такое длинно, что аж не влазит!</string>
+    <string name="goal_done">Выполнено</string>
 
 
 </resources>

@@ -2,6 +2,15 @@
 <resources xmlns:custom="http://schemas.android.com/apk/res/com.custom.project">
 
     <!--Общие-->
+    <style name="Text" parent="android:TextAppearance.DeviceDefault.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/min_padding</item>
+        <item name="android:paddingRight">@dimen/min_padding</item>
+        <item name="android:paddingLeft">@dimen/min_padding</item>
+        <item name="android:paddingBottom">@dimen/min_padding</item>
+    </style>
+
     <style name="Aggregator">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">0dp</item>
@@ -60,14 +69,9 @@
 
   <!--Цели-->
 
-    <style name="GoalsText" parent="android:TextAppearance.DeviceDefault.Medium">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/min_padding</item>
-        <item name="android:paddingRight">@dimen/min_padding</item>
-        <item name="android:paddingLeft">@dimen/min_padding</item>
-        <item name="android:paddingBottom">@dimen/min_padding</item>
+    <style name="GoalsText" parent="Text">
          <item name="android:textSize">@dimen/primary_text_size</item>
          <item name="android:textColor">@color/goals_text_color</item>
     </style>
+
 </resources>
