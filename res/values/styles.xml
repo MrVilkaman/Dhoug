@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:custom="http://schemas.android.com/apk/res/com.custom.project">
 
+    <!--Общие-->
+    <style name="Aggregator">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="IconButton">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:paddingTop">@dimen/min_padding</item>
+        <item name="android:paddingRight">@dimen/min_padding</item>
+        <item name="android:paddingLeft">@dimen/min_padding</item>
+        <item name="android:paddingBottom">@dimen/min_padding</item>
+    </style>
+
+    <style name="HSeparator">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:padding">@dimen/min_padding</item>
+        <item name="android:layout_marginLeft">@dimen/default_separator_margin</item>
+        <item name="android:layout_marginRight">@dimen/default_separator_margin</item>
+        <item name="android:background">@color/default_separator_color</item>
+    </style>
+
     <!--Боковое меню-->
     <style name="LeftMenuButton">
         <item name="android:layout_height">wrap_content</item>
@@ -15,7 +41,6 @@
         <item name="android:textSize">@dimen/left_menu_button_text_size</item>
     </style>
 
-
     <!--Верхняя панелька-->
     <style name="MyTheme" parent="@android:style/Theme.Holo">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
@@ -29,7 +54,20 @@
     </style>
     
     <style name="TitleTextColor">
-        <item name="android:textColor">@color/left_menu_button_text</item>
+        <item name="android:textColor">@color/title_text_color</item>
         <item name="android:textSize">@dimen/left_menu_button_text_size</item>
+    </style>
+
+  <!--Цели-->
+
+    <style name="GoalsText" parent="android:TextAppearance.DeviceDefault.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/min_padding</item>
+        <item name="android:paddingRight">@dimen/min_padding</item>
+        <item name="android:paddingLeft">@dimen/min_padding</item>
+        <item name="android:paddingBottom">@dimen/min_padding</item>
+         <item name="android:textSize">@dimen/primary_text_size</item>
+         <item name="android:textColor">@color/goals_text_color</item>
     </style>
 </resources>

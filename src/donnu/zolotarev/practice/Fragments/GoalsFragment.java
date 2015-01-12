@@ -4,20 +4,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.OnClick;
 import donnu.zolotarev.practice.R;
 
-public class MainFragment extends BaseFragment {
+public class GoalsFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflateFragmentView(R.layout.fragment_main,inflater,container);
+        View view = inflateFragmentView(R.layout.fragment_goals,inflater,container);
         return view;
     }
 
-    @OnClick(R.id.button)
+    /*@OnClick(R.id.button)
     void onClick(){
 
-    }
+    }*/
 }

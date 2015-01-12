@@ -5,6 +5,13 @@
     <dimen name="primary_text_size">22dp</dimen>
     <dimen name="secondary_text_size">18dp</dimen>
 
+    <dimen name="min_padding">2dp</dimen>
+
+    <dimen name="default_separator_margin">8dp</dimen>
+
     <!--Left menu-->
     <dimen name="left_menu_button_text_size">@dimen/primary_text_size</dimen>
+
+
+
 </resources>

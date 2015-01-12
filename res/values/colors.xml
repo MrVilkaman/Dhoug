@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Общие-->
+    <color name="default_separator_color">@android:color/darker_gray</color>
+
+    <!--Левое меню-->
     <color name="left_menu_button_click">#112233</color>
     <color name="left_menu_button">#223344</color>
     <color name="left_menu_button_text">#ffffff</color>
+
+    <!--Верхняя панель-->
+    <color name="title_text_color">@color/left_menu_button</color>
+
+    <!--Цели -->
+    <color name="goals_text_color">#33b5e5</color>
+    <color name="goals_backgrond_color">#D3D3D3</color>
 </resources>

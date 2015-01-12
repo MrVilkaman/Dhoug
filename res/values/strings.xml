@@ -13,5 +13,9 @@
     <string name = "left_menu_search">Поиск</string>
 
 
+    <!--Заглушки-->
+    <string name="data_stub">13 января 2015</string>
+    <string name="week_stub">Неделя</string>
+
 
 </resources>
