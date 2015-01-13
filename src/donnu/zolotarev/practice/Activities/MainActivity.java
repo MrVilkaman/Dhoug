@@ -6,25 +6,27 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.view.MenuItem;
+import donnu.zolotarev.practice.Fragments.GoalsFragment;
 import donnu.zolotarev.practice.Fragments.LeftMenuFragmenu;
 import donnu.zolotarev.practice.Fragments.NotesFragment;
+import donnu.zolotarev.practice.Interface.IOpenMenu;
 import donnu.zolotarev.practice.R;
 
-public class MainActivity extends SingleFragmentActivity {
+public class MainActivity extends SingleFragmentActivity  {
 
     private SlidingPaneLayout drawerLayout;
 
+    private IOpenMenu openMenu;
 
     @Override
     protected Fragment createFragment() {
-        return new NotesFragment();
+        return new GoalsFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setupTabs();
-
         createLeftPanel();
     }
 
@@ -40,6 +42,19 @@ public class MainActivity extends SingleFragmentActivity {
                     .commit();
         }
 
+        openMenu = new IOpenMenu() {
+            @Override
+            public void openGoals() {
+                clearBackStack();
+                loadRootFragment(new GoalsFragment(),true);
+            }
+
+            @Override
+            public void openNotes() {
+                clearBackStack();
+                loadRootFragment(new NotesFragment(),true);
+            }
+        };
     }
 
     @Override
@@ -65,5 +80,16 @@ public class MainActivity extends SingleFragmentActivity {
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+    }
+
+    public IOpenMenu getOpenMenu() {
+        return openMenu;
+    }
+
+    private void clearBackStack(){
+        FragmentManager fManager = getFragmentManager();
+        for(int i = 0, max = fManager.getBackStackEntryCount(); i < max; i++){
+            fManager.popBackStack();
+        }
     }
 }
