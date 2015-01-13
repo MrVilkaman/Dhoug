@@ -68,9 +68,9 @@ public class MainActivity extends SingleFragmentActivity  {
                 }else {
                     drawerLayout.openPane();
                 }
-                break;
+                return true;
         }
-        return true;
+        return super.onMenuItemSelected(featureId,item);
     }
 
 
