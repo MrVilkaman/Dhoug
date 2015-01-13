@@ -6,17 +6,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import donnu.zolotarev.practice.DataModels.GoalItem;
 import donnu.zolotarev.practice.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GoalsAdapter extends BaseAdapter {
 
     //todo change SomeItem
     private final ArrayList<GoalItem> items;
     private final LayoutInflater layoutInflater;
+
+    private int devider = 1001;
 
     public GoalsAdapter(Activity context) {
        items = new ArrayList<GoalItem>();
@@ -26,6 +33,7 @@ public class GoalsAdapter extends BaseAdapter {
     public GoalsAdapter(Activity context, ArrayList<GoalItem> items) {
         this.items = items;
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        sort();
     }
 
     @Override
@@ -49,12 +57,32 @@ public class GoalsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        if (i != items.size()) {
-            if (view == null){
-               view = inflateNewView(viewGroup);
+        if (i != devider) {
+            ViewHolder holder;
+            final GoalItem goalItem;
+            if (view == null) {
+                view = inflateNewView(viewGroup);
             }
-            ViewHolder holder = (ViewHolder)view.getTag();
-            GoalItem goalItem = getSomeItem(i);
+                holder = (ViewHolder)view.getTag();
+            if (holder == null) {
+                view = inflateNewView(viewGroup);
+                holder = (ViewHolder)view.getTag();
+            }
+
+                goalItem = getSomeItem(i < devider?i:i-1);
+                holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        goalItem.setDone(b);
+                        sort();
+                    }
+                });
+
+
+
+            holder.checkBox.setChecked(goalItem.isDone());
+
+
         } else{
             view = inflateTextView(viewGroup);
         }
@@ -75,10 +103,32 @@ public class GoalsAdapter extends BaseAdapter {
         return view;
     }
 
+    public void sort(){
+        Collections.sort(items, new Comparator<GoalItem>() {
+            public int compare(GoalItem o1, GoalItem o2) {
+                return Boolean.valueOf(o1.isDone()).compareTo(o2.isDone());
+            }
+        });
+
+        devider = items.size();
+        for (int i = 0; i<items.size();i++){
+            if (getSomeItem(i).isDone()) {
+                devider = i;
+                break;
+            }
+        }
+        notifyDataSetChanged();
+    }
+
     private class ViewHolder {
+        private final CheckBox checkBox;
+        private final TextView title;
+        private final TextView subTitle;
 
         public ViewHolder(View view) {
-           ///someField =  ButterKnife.findById(view,R.id.someField);
+            checkBox =  ButterKnife.findById(view, R.id.checkBox);
+            title =  ButterKnife.findById(view, R.id.goal_item_title);
+            subTitle =  ButterKnife.findById(view, R.id.goal_item_sub_title);
         }
     }
 }

@@ -27,7 +27,9 @@ public class GoalsFragment extends BaseFragment {
         if (adapted == null) {
             ArrayList<GoalItem> items = new ArrayList<GoalItem>();
             items.add(new GoalItem());
-            items.add(new GoalItem());
+            GoalItem goalItem = new GoalItem();
+            goalItem.setDone(true);
+            items.add(goalItem);
             items.add(new GoalItem());
             items.add(new GoalItem());
             adapted = new GoalsAdapter(activity,items);
