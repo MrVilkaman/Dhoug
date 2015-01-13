@@ -16,7 +16,7 @@ public class LeftMenuFragmenu extends BaseFragment {
 
 
     private SlidingPaneLayout drawerLayout;
-    private int lastTitle;
+    private int lastTitle = R.string.left_menu_goals;;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class LeftMenuFragmenu extends BaseFragment {
             }
         });
         ActionBar bar = getActivity().getActionBar();
-        bar.setTitle(R.string.left_menu_goals);
+        bar.setTitle(lastTitle);
         return view;
     }
 

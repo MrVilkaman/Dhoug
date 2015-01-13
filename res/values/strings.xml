@@ -14,11 +14,19 @@
 
 
     <!--Заглушки-->
-    <string name="data_stub">13 января 2015</string>
+    <string name="data_stub">99 января 2015</string>
     <string name="week_stub">Неделя</string>
     <string name="title_stub">Заголовок</string>
     <string name="sub_title_stub">Описание ну оооочень длинное! Такое длинно, что аж не влазит!</string>
+
+    <!--Цели-->
     <string name="goal_done">Выполнено</string>
+
+    <!--Всплывающее меню периода-->
+    <string name="period_day">День</string>
+    <string name="period_week">Неделя</string>
+    <string name="period_mounth">Месяц</string>
+    <string name="period_all">Все цели</string>
 
 
 </resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item android:id="@+id/day" android:title="@string/period_day"/>
+   <item android:id="@+id/week" android:title="@string/period_week"/>
+   <item android:id="@+id/mounth" android:title="@string/period_mounth"/>
+   <item android:id="@+id/all" android:title="@string/period_all"/>
+</menu>

@@ -3,13 +3,19 @@ package donnu.zolotarev.practice.Fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import donnu.zolotarev.practice.Adapters.NotesAdapter;
 import donnu.zolotarev.practice.DataModels.NoteItem;
 import donnu.zolotarev.practice.R;
+import donnu.zolotarev.practice.Utils.Constants;
+import donnu.zolotarev.practice.Utils.Utils;
 
 import java.util.ArrayList;
 
@@ -20,6 +26,13 @@ public class NotesFragment extends BaseFragment {
     @InjectView(R.id.list)
     ListView listView;
 
+    @InjectView(R.id.goals_current_data)
+    TextView calendar;
+
+    @InjectView(R.id.goals_goals_period)
+    TextView period;
+
+    private PopupMenu popupMenu;
 
     @Override
     public void onAttach(Activity activity) {
@@ -36,6 +49,8 @@ public class NotesFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_goals,inflater,container);
+        calendar.setText(Utils.getCurrentFormatDate(Constants.CURRENT_DATE));
+        setup();
         return view;
     }
 
@@ -45,4 +60,35 @@ public class NotesFragment extends BaseFragment {
     }
 
 
+    private void setup() {
+        popupMenu = new PopupMenu(getActivity(), period);
+        popupMenu.inflate(R.menu.periodmenu); // Для Android 4.0
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+
+                    case R.id.day:
+                        period.setText(R.string.period_day);
+                        return true;
+                    case R.id.week:
+                        period.setText(R.string.period_week);
+                        return true;
+                    case R.id.mounth:
+                        period.setText(R.string.period_mounth);
+                        return true;
+                    case R.id.all:
+                        period.setText(R.string.period_all);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+    }
+
+    @OnClick(R.id.goals_goals_period)
+    void onPediod(){
+        popupMenu.show();
+    }
 }
