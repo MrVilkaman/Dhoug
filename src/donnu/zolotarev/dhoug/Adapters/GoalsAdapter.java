@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
-import donnu.zolotarev.practice.R;
+import donnu.zolotarev.dhoug.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

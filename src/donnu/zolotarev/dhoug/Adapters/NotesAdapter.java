@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
-import donnu.zolotarev.practice.R;
+import donnu.zolotarev.dhoug.R;
 
 import java.util.ArrayList;
 

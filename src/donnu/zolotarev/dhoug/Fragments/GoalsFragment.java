@@ -14,7 +14,7 @@ import butterknife.OnClick;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Utils.Utils;
-import donnu.zolotarev.practice.R;
+import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
 
 import java.util.ArrayList;

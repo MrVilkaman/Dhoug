@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.Activities.MainActivity;
 import donnu.zolotarev.dhoug.Interface.IOpenMenu;
-import donnu.zolotarev.practice.R;
+import donnu.zolotarev.dhoug.R;
 
 public class LeftMenuFragmenu extends BaseFragment {
 

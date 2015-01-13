@@ -10,7 +10,7 @@ import donnu.zolotarev.dhoug.Fragments.GoalsFragment;
 import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
 import donnu.zolotarev.dhoug.Fragments.NotesFragment;
 import donnu.zolotarev.dhoug.Interface.IOpenMenu;
-import donnu.zolotarev.practice.R;
+import donnu.zolotarev.dhoug.R;
 
 public class MainActivity extends SingleFragmentActivity  {
 

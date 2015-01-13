@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import donnu.zolotarev.practice.R;
+import donnu.zolotarev.dhoug.R;
 
 public abstract class SingleFragmentActivity extends Activity {
     protected abstract Fragment createFragment();
