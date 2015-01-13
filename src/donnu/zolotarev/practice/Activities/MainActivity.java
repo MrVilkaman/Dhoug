@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.view.MenuItem;
 import donnu.zolotarev.practice.Fragments.LeftMenuFragmenu;
-import donnu.zolotarev.practice.Fragments.GoalsFragment;
+import donnu.zolotarev.practice.Fragments.NotesFragment;
 import donnu.zolotarev.practice.R;
 
 public class MainActivity extends SingleFragmentActivity {
@@ -17,7 +17,7 @@ public class MainActivity extends SingleFragmentActivity {
 
     @Override
     protected Fragment createFragment() {
-        return new GoalsFragment();
+        return new NotesFragment();
     }
 
     @Override
