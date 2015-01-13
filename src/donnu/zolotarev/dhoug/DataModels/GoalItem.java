@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.DataModels;
+package donnu.zolotarev.dhoug.DataModels;
 
 public class GoalItem {
     private boolean isDone = false;

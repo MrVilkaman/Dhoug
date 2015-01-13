@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Fragments;
+package donnu.zolotarev.dhoug.Fragments;
 
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import donnu.zolotarev.practice.Activities.MainActivity;
-import donnu.zolotarev.practice.Interface.IOpenMenu;
+import donnu.zolotarev.dhoug.Activities.MainActivity;
+import donnu.zolotarev.dhoug.Interface.IOpenMenu;
 import donnu.zolotarev.practice.R;
 
 public class LeftMenuFragmenu extends BaseFragment {

@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Interface;
+package donnu.zolotarev.dhoug.Interface;
 
 public interface IOpenMenu {
 

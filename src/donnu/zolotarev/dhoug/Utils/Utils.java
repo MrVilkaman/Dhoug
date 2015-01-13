@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Utils;
+package donnu.zolotarev.dhoug.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

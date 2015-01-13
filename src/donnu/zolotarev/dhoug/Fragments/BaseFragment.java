@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Fragments;
+package donnu.zolotarev.dhoug.Fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import butterknife.ButterKnife;
-import donnu.zolotarev.practice.Activities.SingleFragmentActivity;
+import donnu.zolotarev.dhoug.Activities.SingleFragmentActivity;
 
 public class BaseFragment extends Fragment {
 

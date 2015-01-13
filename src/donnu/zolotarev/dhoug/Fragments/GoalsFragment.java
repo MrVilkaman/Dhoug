@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Fragments;
+package donnu.zolotarev.dhoug.Fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,17 +11,17 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import donnu.zolotarev.practice.Adapters.NotesAdapter;
-import donnu.zolotarev.practice.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
+import donnu.zolotarev.dhoug.DataModels.GoalItem;
+import donnu.zolotarev.dhoug.Utils.Utils;
 import donnu.zolotarev.practice.R;
-import donnu.zolotarev.practice.Utils.Constants;
-import donnu.zolotarev.practice.Utils.Utils;
+import donnu.zolotarev.dhoug.Utils.Constants;
 
 import java.util.ArrayList;
 
-public class NotesFragment extends BaseFragment {
+public class GoalsFragment extends BaseFragment {
 
-    private NotesAdapter adapted;
+    private GoalsAdapter adapted;
 
     @InjectView(R.id.list)
     ListView listView;
@@ -38,11 +38,14 @@ public class NotesFragment extends BaseFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (adapted == null) {
-            ArrayList<NoteItem> items = new ArrayList<NoteItem>();
-            items.add(new NoteItem());
-            items.add(new NoteItem());
-            items.add(new NoteItem());
-            adapted = new NotesAdapter(activity,items);
+            ArrayList<GoalItem> items = new ArrayList<GoalItem>();
+            items.add(new GoalItem());
+            GoalItem goalItem = new GoalItem();
+            goalItem.setDone(true);
+            items.add(goalItem);
+            items.add(new GoalItem());
+            items.add(new GoalItem());
+            adapted = new GoalsAdapter(activity,items);
         }
     }
 
@@ -58,7 +61,6 @@ public class NotesFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         listView.setAdapter(adapted);
     }
-
 
     private void setup() {
         popupMenu = new PopupMenu(getActivity(), period);
@@ -91,4 +93,5 @@ public class NotesFragment extends BaseFragment {
     void onPediod(){
         popupMenu.show();
     }
+
 }

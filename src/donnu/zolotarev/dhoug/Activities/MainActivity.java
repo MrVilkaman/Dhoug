@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Activities;
+package donnu.zolotarev.dhoug.Activities;
 
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -6,10 +6,10 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.view.MenuItem;
-import donnu.zolotarev.practice.Fragments.GoalsFragment;
-import donnu.zolotarev.practice.Fragments.LeftMenuFragmenu;
-import donnu.zolotarev.practice.Fragments.NotesFragment;
-import donnu.zolotarev.practice.Interface.IOpenMenu;
+import donnu.zolotarev.dhoug.Fragments.GoalsFragment;
+import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
+import donnu.zolotarev.dhoug.Fragments.NotesFragment;
+import donnu.zolotarev.dhoug.Interface.IOpenMenu;
 import donnu.zolotarev.practice.R;
 
 public class MainActivity extends SingleFragmentActivity  {

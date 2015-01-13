@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Activities;
+package donnu.zolotarev.dhoug.Activities;
 
 import android.app.Activity;
 import android.app.Fragment;

@@ -1,4 +1,4 @@
-package donnu.zolotarev.practice.Adapters;
+package donnu.zolotarev.dhoug.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import butterknife.ButterKnife;
-import donnu.zolotarev.practice.DataModels.GoalItem;
+import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.practice.R;
 
 import java.util.ArrayList;
