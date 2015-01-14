@@ -6,7 +6,12 @@ import java.util.Date;
 public class Utils {
 
     public static String getCurrentFormatDate(String format){
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        return dateFormat.format(new Date()).toString();
+        return getFormatData(format,new Date());
     }
+
+    public static String getFormatData(String format, Date date){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
+        return  simpleDateFormat.format(date);
+    }
+
 }

@@ -77,7 +77,7 @@ public class GoalsFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_add:
-                toast("!!");
+                showFragment(new AddGoalFragment(),true);
                 return true;
             case R.id.menu_edit:
                 return true;

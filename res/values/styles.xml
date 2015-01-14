@@ -59,10 +59,10 @@
         <item name = "android:width">0dp</item>
         <item name="android:background">@color/left_menu_button</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:titleTextStyle">@style/TitleTextColor</item>
+        <item name="android:titleTextStyle">@style/TitleText</item>
     </style>
     
-    <style name="TitleTextColor">
+    <style name="TitleText">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/left_menu_button_text_size</item>
     </style>
@@ -73,5 +73,27 @@
          <item name="android:textSize">@dimen/primary_text_size</item>
          <item name="android:textColor">@color/goals_text_color</item>
     </style>
+
+    <style name="SimpleEditText" parent="android:Widget.Holo.Light.EditText">
+        <item name="android:background">@drawable/apptheme_edit_text_holo_light</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/edit_text_padding</item>
+        <item name="android:layout_marginRight">@dimen/edit_text_padding</item>
+        <item name="android:textColor">@color/goal_item_title_text_color</item>
+    </style>
+    
+    <style name="SimpleEditText.Picker">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
+    <style name="Text.AddGoal">
+        <item name="android:layout_marginLeft">@dimen/edit_text_padding</item>
+        <item name="android:layout_marginRight">@dimen/edit_text_padding</item>
+        <item name="android:textColor">@color/addgoal_text</item>
+    </style>
+
 
 </resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/goals_backgrond_color"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <EditText
+            style="@style/SimpleEditText"
+            android:id="@+id/add_goal_title"
+            android:hint="@string/add_goal_title"
+            />
+    <EditText
+            style="@style/SimpleEditText"
+            android:hint="@string/add_goal_subtitle"
+            android:id="@+id/add_goal_subtitle"/>
+    <TextView style="@style/Text.AddGoal"
+            android:text="@string/add_goal_begin"
+            />
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <EditText
+                style="@style/SimpleEditText.Picker"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:id="@+id/add_goal_begin_data"/>
+        <EditText
+                style="@style/SimpleEditText.Picker"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:id="@+id/add_goal_begin_time"/>
+    </LinearLayout>
+    <TextView style="@style/Text.AddGoal"
+              android:text="@string/add_goal_end"
+            />
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="horizontal"
+                  android:layout_height="wrap_content">
+        <EditText
+                style="@style/SimpleEditText.Picker"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:id="@+id/add_goal_end_data"/>
+        <EditText
+                style="@style/SimpleEditText.Picker"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:id="@+id/add_goal_end_time"/>
+    </LinearLayout>
+    <TextView style="@style/Text.AddGoal"
+              android:text="@string/add_goal_repeat"
+            />
+    <EditText
+            style="@style/SimpleEditText.Picker"
+            android:id="@+id/add_goal_repeat"/>
+</LinearLayout>

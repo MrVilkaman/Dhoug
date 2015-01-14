@@ -19,4 +19,6 @@
     <color name="goal_item_sub_title_text_color">#dbdbdb</color>
 
     <color name="goal_item_backgrond_color">#fff</color>
+
+    <color name="addgoal_text">@android:color/darker_gray</color>
 </resources>

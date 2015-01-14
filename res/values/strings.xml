@@ -27,6 +27,11 @@
     <string name="period_week">Неделя</string>
     <string name="period_mounth">Месяц</string>
     <string name="period_all">Все цели</string>
+    <string name="add_goal_title">Название цели</string>
+    <string name="add_goal_subtitle">Описание цели</string>
+    <string name="add_goal_begin">Начало</string>
+    <string name="add_goal_end">Окончание</string>
+    <string name="add_goal_repeat">Повторять</string>
 
 
 </resources>
