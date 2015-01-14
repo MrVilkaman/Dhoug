@@ -30,7 +30,6 @@ public class NotesAdapter extends BaseAdapter {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getCount() {
         return items.size();
@@ -69,6 +68,11 @@ public class NotesAdapter extends BaseAdapter {
         ViewHolder holder = new ViewHolder(view);
         view.setTag(holder);
         return view;
+    }
+
+    public void add(NoteItem item) {
+        items.add(item);
+        notifyDataSetChanged();
     }
 
 

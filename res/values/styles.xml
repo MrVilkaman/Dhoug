@@ -84,7 +84,6 @@
     </style>
     
     <style name="SimpleEditText.Picker">
-        <item name="android:gravity">center_horizontal</item>
         <item name="android:focusable">false</item>
         <item name="android:focusableInTouchMode">false</item>
     </style>

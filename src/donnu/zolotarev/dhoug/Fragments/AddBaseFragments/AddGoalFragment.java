@@ -4,9 +4,11 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -24,12 +26,22 @@ public class AddGoalFragment extends AddBaseFragment {
     @InjectView(R.id.add_goal_repeat)
     EditText period;
 
+    private PopupMenu popupMenu;
+
+    PopupMenu.OnMenuItemClickListener periodListener = new PopupMenu.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            period.setText(item.getTitle());
+            return true;
+        }
+    };
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
-        setupPopupMenu(period);
-        period.setText(R.string.add_period_never);
+        View view = inflateFragmentView(R.layout.fragment_add_goals, inflater, container);
+        popupMenu = setupPopupMenu(period, R.menu.add_periodmenu, periodListener);
+        period.setText(R.string.notes_validate_in_perpetuity);
         return view;
     }
 
@@ -41,6 +53,11 @@ public class AddGoalFragment extends AddBaseFragment {
     @OnClick({R.id.add_goal_begin_time,R.id.add_goal_end_time})
     void clickTime(View view){
         showTimepickerDialog(view.getId());
+    }
+
+    @OnClick(R.id.add_goal_repeat)
+    void clickPeriod(){
+        popupMenu.show();
     }
 
     private void showTimepickerDialog(int viewId) {
@@ -66,7 +83,6 @@ public class AddGoalFragment extends AddBaseFragment {
                 int id = data.getIntExtra(DatePickerFragment.EXTRA_VIEW_ID,-1);
                 String format = requestCode  == DatePickerFragment.REQUEST_DATE?Constants.DATE_FORMAT:Constants.TIME_FORMAT;
                 ((EditText) ButterKnife.findById(getView(), id)).setText(Utils.getFormatData(format, date));
-
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);

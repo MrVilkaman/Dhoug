@@ -40,4 +40,20 @@
     <string name="add_period_every_week">Еженедельно</string>
     <string name="add_period_every_mounth">Ежемесячно</string>
 
+    <!--Заметки-->
+    <string name="add_note_to_goal">Прикреплять к цели</string>
+    <string name="add_note_validity">Срок действия заметки</string>
+    <string name="add_note_title">Название цели</string>
+    <string name="add_note_subtitle">Описание цели</string>
+
+    <string name="note_to_goal_not_attached">Не прикреплять</string>
+
+    <!--Всплывающее меню время жизни заметки-->
+    <string name="notes_validate_in_perpetuity">Бессрочно</string>
+    <string name="notes_validate_week">Неделя</string>
+    <string name="notes_validate_mounth">Месяц</string>
+    <string name="notes_validate_year">Год</string>
+
+
+
 </resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/goals_backgrond_color"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <EditText
+            style="@style/SimpleEditText"
+            android:id="@+id/add_note_title"
+            android:hint="@string/add_note_title"
+            />
+    <EditText
+            style="@style/SimpleEditText"
+            android:hint="@string/add_note_subtitle"
+            android:id="@+id/add_note_subtitle"/>
+
+    <TextView style="@style/Text.AddGoal"
+              android:text="@string/add_note_to_goal"
+            />
+    <EditText
+            style="@style/SimpleEditText.Picker"
+            android:id="@+id/add_note_to_goal"/>
+
+
+    <TextView style="@style/Text.AddGoal"
+              android:text="@string/add_note_validity"
+            />
+    <EditText
+            style="@style/SimpleEditText.Picker"
+            android:id="@+id/add_note_validity"/>
+</LinearLayout>

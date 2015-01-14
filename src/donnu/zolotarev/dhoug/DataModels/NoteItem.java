@@ -1,4 +1,7 @@
 package donnu.zolotarev.dhoug.DataModels;
 
-public class NoteItem {
+import java.io.Serializable;
+
+public class NoteItem implements Serializable {
+
 }
