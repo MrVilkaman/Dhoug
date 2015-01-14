@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-   <item android:id="@+id/day" android:title="@string/period_day"/>
-   <item android:id="@+id/week" android:title="@string/period_week"/>
-   <item android:id="@+id/mounth" android:title="@string/period_mounth"/>
-   <item android:id="@+id/all" android:title="@string/period_all"/>
+   <item android:id="@+id/add_period_never" android:title="@string/add_period_never"/>
+   <item android:id="@+id/add_period_every_day" android:title="@string/add_period_every_day"/>
+   <item android:id="@+id/add_period_every_week" android:title="@string/add_period_every_week"/>
+   <item android:id="@+id/add_period_every_mounth" android:title="@string/add_period_every_mounth"/>
 </menu>

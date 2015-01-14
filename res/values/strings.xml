@@ -22,16 +22,22 @@
     <!--Цели-->
     <string name="goal_done">Выполнено</string>
 
-    <!--Всплывающее меню периода-->
-    <string name="period_day">День</string>
-    <string name="period_week">Неделя</string>
-    <string name="period_mounth">Месяц</string>
-    <string name="period_all">Все цели</string>
     <string name="add_goal_title">Название цели</string>
     <string name="add_goal_subtitle">Описание цели</string>
     <string name="add_goal_begin">Начало</string>
     <string name="add_goal_end">Окончание</string>
     <string name="add_goal_repeat">Повторять</string>
 
+    <!--Всплывающее меню периода-->
+    <string name="period_day">День</string>
+    <string name="period_week">Неделя</string>
+    <string name="period_mounth">Месяц</string>
+    <string name="period_all">Все цели</string>
+
+    <!--Всплывающее меню периода-->
+    <string name="add_period_never">Не повторять</string>
+    <string name="add_period_every_day">Ежедневно</string>
+    <string name="add_period_every_week">Еженедельно</string>
+    <string name="add_period_every_mounth">Ежемесячно</string>
 
 </resources>

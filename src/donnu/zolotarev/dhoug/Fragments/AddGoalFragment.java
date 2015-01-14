@@ -4,10 +4,13 @@ import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
@@ -17,9 +20,17 @@ import java.util.Date;
 
 public class AddGoalFragment extends BaseFragment {
 
+    private PopupMenu popupMenu;
+
+    @InjectView(R.id.add_goal_repeat)
+    EditText period;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_add_goals,inflater,container);
+        setupPopupMenu();
+
+        period.setText(R.string.add_period_never);
         return view;
     }
 
@@ -31,6 +42,11 @@ public class AddGoalFragment extends BaseFragment {
     @OnClick({R.id.add_goal_begin_time,R.id.add_goal_end_time})
     void clickTime(View view){
         showTimepickerDialog(view.getId());
+    }
+
+    @OnClick(R.id.add_goal_repeat)
+    void clickPeriod(){
+        popupMenu.show();
     }
 
     private void showTimepickerDialog(int viewId) {
@@ -60,6 +76,33 @@ public class AddGoalFragment extends BaseFragment {
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    private void setupPopupMenu() {
+        popupMenu = new PopupMenu(getActivity(), period);
+        popupMenu.inflate(R.menu.periodmenu); // Для Android 4.0
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.add_period_never:
+                        period.setText(R.string.add_period_never);
+                        return true;
+                    case R.id.add_period_every_day:
+                        period.setText(R.string.add_period_every_day);
+                        return true;
+                    case R.id.add_period_every_week:
+                        period.setText(R.string.add_period_every_week);
+                        return true;
+                    case R.id.add_period_every_mounth:
+                        period.setText(R.string.add_period_every_mounth);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 
 }
