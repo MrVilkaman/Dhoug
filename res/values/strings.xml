@@ -53,7 +53,8 @@
     <string name="notes_validate_week">Неделя</string>
     <string name="notes_validate_mounth">Месяц</string>
     <string name="notes_validate_year">Год</string>
-
+    <string name="context_menu_edit">Редактировать</string>
+    <string name="context_menu_delete">Удалить</string>
 
 
 </resources>

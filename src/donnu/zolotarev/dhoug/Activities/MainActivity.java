@@ -6,8 +6,8 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.view.MenuItem;
-import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
+import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
 import donnu.zolotarev.dhoug.Interface.IOpenMenu;
 import donnu.zolotarev.dhoug.R;
@@ -34,7 +34,6 @@ public class MainActivity extends SingleFragmentActivity  {
         drawerLayout = (SlidingPaneLayout) findViewById(R.id.drawer_layout);
         FragmentManager fm = getFragmentManager();
         Fragment myFragment = fm.findFragmentById(R.id.menu_frame);
-
         if (myFragment == null){
             myFragment = new LeftMenuFragmenu();
             fm.beginTransaction()

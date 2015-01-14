@@ -14,7 +14,7 @@ import donnu.zolotarev.dhoug.R;
 
 import java.util.ArrayList;
 
-public class NotesAdapter extends BaseAdapter {
+public class NotesAdapter extends BaseAdapter implements IAdapter {
 
     private final ArrayList<NoteItem> items;
     private final LayoutInflater layoutInflater;
@@ -72,6 +72,12 @@ public class NotesAdapter extends BaseAdapter {
 
     public void add(NoteItem item) {
         items.add(item);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void delete(long id) {
+        items.remove((int)id);
         notifyDataSetChanged();
     }
 

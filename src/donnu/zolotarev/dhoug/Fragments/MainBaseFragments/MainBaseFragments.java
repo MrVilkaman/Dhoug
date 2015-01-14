@@ -2,18 +2,19 @@ package donnu.zolotarev.dhoug.Fragments.MainBaseFragments;
 
 import android.os.Bundle;
 import android.view.*;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.TextView;
+import android.widget.*;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import donnu.zolotarev.dhoug.Adapters.IAdapter;
 import donnu.zolotarev.dhoug.Fragments.BaseFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
 import donnu.zolotarev.dhoug.Utils.Utils;
 
 abstract class MainBaseFragments extends BaseFragment {
+
+    private static final int CM_EDIT = 0;
+    private static final int CM_DELETE = 1;
 
     protected ListAdapter baseAdapted;
 
@@ -27,6 +28,8 @@ abstract class MainBaseFragments extends BaseFragment {
     protected TextView period;
 
     protected PopupMenu popupMenu;
+
+
 
 
     @Override
@@ -47,6 +50,14 @@ abstract class MainBaseFragments extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         listView.setAdapter(baseAdapted);
+        listView.setOnCreateContextMenuListener(this);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, CM_EDIT, 0, R.string.context_menu_edit);
+        menu.add(0, CM_DELETE, 1, R.string.context_menu_delete);
     }
 
     @Override
@@ -61,22 +72,8 @@ abstract class MainBaseFragments extends BaseFragment {
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.day:
-                        period.setText(R.string.period_day);
-                        return true;
-                    case R.id.week:
-                        period.setText(R.string.period_week);
-                        return true;
-                    case R.id.mounth:
-                        period.setText(R.string.period_mounth);
-                        return true;
-                    case R.id.all:
-                        period.setText(R.string.period_all);
-                        return true;
-                    default:
-                        return false;
-                }
+                period.setText(item.getTitle());
+                return true;
             }
         });
     }
@@ -86,5 +83,24 @@ abstract class MainBaseFragments extends BaseFragment {
         popupMenu.show();
     }
 
+   /* @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.add(0, CM_EDIT, 0, R.string.context_menu_edit);
+        menu.add(0, CM_DELETE, 1, R.string.context_menu_delete);
+//        super.onCreateContextMenu(menu, v, menuInfo);
+    }*/
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+       switch (item.getItemId()){
+           case CM_EDIT:
+
+               break;
+           case CM_DELETE:
+               ((IAdapter)baseAdapted).delete(menuInfo.id);
+               break;
+       }
+        return true;
+    }
 }

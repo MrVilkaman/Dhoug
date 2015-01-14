@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class GoalsAdapter extends BaseAdapter {
+public class GoalsAdapter extends BaseAdapter implements IAdapter {
 
     //todo change SomeItem
     private final ArrayList<GoalItem> items;
@@ -48,7 +48,7 @@ public class GoalsAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return i < devider?i:i-1;
     }
 
     public GoalItem getSomeItem(int i){
@@ -81,10 +81,18 @@ public class GoalsAdapter extends BaseAdapter {
 
 
             holder.checkBox.setChecked(goalItem.isDone());
+            view.setLongClickable(true);
 
 
         } else{
             view = inflateTextView(viewGroup);
+            view.setLongClickable(false);
+            view.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    return true;
+                }
+            });
         }
 
         return view;
@@ -122,6 +130,12 @@ public class GoalsAdapter extends BaseAdapter {
 
     public void add(GoalItem item) {
         items.add(item);
+        sort();
+    }
+
+    @Override
+    public void delete(long id) {
+        items.remove((int)id);
         sort();
     }
 
