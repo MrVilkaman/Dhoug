@@ -96,6 +96,7 @@ public class DatePickerFragment extends DialogFragment {
         View view = getActivity().getLayoutInflater()
                 .inflate(R.layout.dialog_date, null);
         DatePicker datePicker = (DatePicker) view.findViewById(R.id.datePicker);
+        datePicker.setCalendarViewShown(false);
         datePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker datePicker, int i, int i2, int i3) {
