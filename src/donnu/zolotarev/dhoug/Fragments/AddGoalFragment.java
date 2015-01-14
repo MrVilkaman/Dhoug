@@ -3,15 +3,13 @@ package donnu.zolotarev.dhoug.Fragments;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
 import donnu.zolotarev.dhoug.Utils.Utils;
@@ -20,10 +18,20 @@ import java.util.Date;
 
 public class AddGoalFragment extends BaseFragment {
 
+    public static final int ADD_NEW = 0;
+
+    public static final String ITEM = "item";
+
     private PopupMenu popupMenu;
 
     @InjectView(R.id.add_goal_repeat)
     EditText period;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,6 +55,28 @@ public class AddGoalFragment extends BaseFragment {
     @OnClick(R.id.add_goal_repeat)
     void clickPeriod(){
         popupMenu.show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.yes_no_menu, menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_accept:
+               toast("Добавил!");
+                sendResult(ADD_NEW);
+                back();
+                return true;
+            case R.id.menu_cancel:
+                back();
+                return true;
+        }
+
+        return false;
     }
 
     private void showTimepickerDialog(int viewId) {
@@ -103,6 +133,16 @@ public class AddGoalFragment extends BaseFragment {
                 }
             }
         });
+    }
+
+    private void sendResult(int requetCode) {
+        if (getTargetFragment() == null){
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(ITEM, new GoalItem());
+        getTargetFragment().onActivityResult(getTargetRequestCode(), requetCode, intent);
+
     }
 
 }

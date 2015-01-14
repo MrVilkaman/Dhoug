@@ -1,6 +1,8 @@
 package donnu.zolotarev.dhoug.DataModels;
 
-public class GoalItem {
+import java.io.Serializable;
+
+public class GoalItem implements Serializable {
     private boolean isDone = false;
 
     public boolean isDone() {

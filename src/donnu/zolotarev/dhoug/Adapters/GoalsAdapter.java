@@ -120,6 +120,11 @@ public class GoalsAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void add(GoalItem item) {
+        items.add(item);
+        sort();
+    }
+
     private class ViewHolder {
         private final CheckBox checkBox;
         private final TextView title;

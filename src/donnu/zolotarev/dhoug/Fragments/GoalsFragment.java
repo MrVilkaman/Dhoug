@@ -1,6 +1,7 @@
 package donnu.zolotarev.dhoug.Fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.ListView;
@@ -10,9 +11,9 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
-import donnu.zolotarev.dhoug.Utils.Utils;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
+import donnu.zolotarev.dhoug.Utils.Utils;
 
 import java.util.ArrayList;
 
@@ -68,8 +69,7 @@ public class GoalsFragment extends BaseFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.goals_menu,menu);
-        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.goals_menu, menu);
     }
 
 
@@ -77,7 +77,9 @@ public class GoalsFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_add:
-                showFragment(new AddGoalFragment(),true);
+                AddGoalFragment goalFragment = new AddGoalFragment();
+                goalFragment.setTargetFragment(this,AddGoalFragment.ADD_NEW);
+                showFragment(goalFragment, true);
                 return true;
             case R.id.menu_edit:
                 return true;
@@ -115,6 +117,18 @@ public class GoalsFragment extends BaseFragment {
     @OnClick(R.id.goals_goals_period)
     void onPediod(){
         popupMenu.show();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case AddGoalFragment.ADD_NEW:
+                GoalItem item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
+                adapted.add(item);
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }
