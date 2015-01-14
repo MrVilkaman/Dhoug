@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.MenuItem;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
-import donnu.zolotarev.dhoug.Fragments.AddGoalFragment;
+import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.R;
 
 import java.util.ArrayList;
