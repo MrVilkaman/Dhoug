@@ -3,8 +3,10 @@ package donnu.zolotarev.dhoug.Fragments.MainBaseFragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
+import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.R;
 
@@ -55,8 +57,27 @@ public class GoalsFragment extends MainBaseFragments {
                 GoalItem item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 adapter.add(item);
                 break;
+            case AddGoalFragment.CHANGE:
+                item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
+                adapter.change(item);
+                break;
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()){
+            case CM_EDIT:
+                AddGoalFragment goalsFragment = AddGoalFragment.edit(adapter.getSomeItem((int)menuInfo.id));
+                goalsFragment.setTargetFragment(this, AddGoalFragment.CHANGE);
+                showFragment(goalsFragment, true);
+                return true;
+        }
+        return false;
+    }
+
+
 
 }

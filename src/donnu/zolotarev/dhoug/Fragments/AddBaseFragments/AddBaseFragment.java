@@ -13,7 +13,9 @@ import java.io.Serializable;
 public abstract class AddBaseFragment extends BaseFragment {
 
     public static final int ADD_NEW = 0;
+    public static final int CHANGE = 1;
     public static final String ITEM = "item";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

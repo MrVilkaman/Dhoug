@@ -13,8 +13,8 @@ import donnu.zolotarev.dhoug.Utils.Utils;
 
 abstract class MainBaseFragments extends BaseFragment {
 
-    private static final int CM_EDIT = 0;
-    private static final int CM_DELETE = 1;
+    static final int CM_EDIT = 0;
+    static final int CM_DELETE = 1;
 
     protected ListAdapter baseAdapted;
 
@@ -94,13 +94,10 @@ abstract class MainBaseFragments extends BaseFragment {
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
        switch (item.getItemId()){
-           case CM_EDIT:
-
-               break;
-           case CM_DELETE:
+          case CM_DELETE:
                ((IAdapter)baseAdapted).delete(menuInfo.id);
-               break;
+               return true;
        }
-        return true;
+        return false;
     }
 }

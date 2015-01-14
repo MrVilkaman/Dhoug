@@ -33,6 +33,14 @@ public class AddNotesFragment extends AddBaseFragment {
         }
     };
 
+    public static AddNotesFragment edit(NoteItem noteItem){
+        AddNotesFragment fragment = new AddNotesFragment();
+        Bundle boundle = new Bundle();
+        boundle.putSerializable(ITEM,noteItem);
+        fragment.setArguments(boundle);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_add_notes, inflater, container);

@@ -81,6 +81,9 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
         notifyDataSetChanged();
     }
 
+    @Override
+    public void change(Object item) {
+    }
 
     private class ViewHolder {
         private final CheckBox checkBox;

@@ -36,6 +36,14 @@ public class AddGoalFragment extends AddBaseFragment {
         }
     };
 
+    public static AddGoalFragment edit(GoalItem someItem) {
+        AddGoalFragment fragment = new AddGoalFragment();
+        Bundle boundle = new Bundle();
+        boundle.putSerializable(ITEM,someItem);
+        fragment.setArguments(boundle);
+        return fragment;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -92,4 +100,6 @@ public class AddGoalFragment extends AddBaseFragment {
     protected Serializable getItem() {
         return new GoalItem();
     }
+
+
 }

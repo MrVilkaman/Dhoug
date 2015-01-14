@@ -139,6 +139,11 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
         sort();
     }
 
+    @Override
+    public void change(Object item) {
+
+    }
+
     private class ViewHolder {
         private final CheckBox checkBox;
         private final TextView title;
