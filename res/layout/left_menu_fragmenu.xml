@@ -11,19 +11,19 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
         <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_goals"
+                android:drawableLeft="@drawable/ic_action_location_found"
                 android:id="@+id/left_menu_goals"
                 android:text="@string/left_menu_goals"/>
         <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_nots"
+                android:drawableLeft="@drawable/ic_action_labels"
                 android:id="@+id/left_menu_nots"
                 android:text="@string/left_menu_nots"/>
         <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_tasks"
+                android:drawableLeft="@drawable/ic_action_data_usage"
                 android:id="@+id/left_menu_tasks"
                 android:text="@string/left_menu_tasks"/>
         <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_buys"
+                android:drawableLeft="@drawable/ic_action_paste"
                 android:id="@+id/left_menu_buys"
                 android:text="@string/left_menu_buys"/>
     </LinearLayout>

@@ -19,7 +19,8 @@
                   android:id="@+id/goals_goals_period"/>
         <Button style="@style/IconButton"
                 android:paddingLeft="0dp"
-                android:drawableRight="@android:drawable/ic_menu_my_calendar"
+                android:paddingRight="@dimen/default_separator_margin"
+                android:drawableRight="@drawable/ic_action_go_to_today"
                 android:id="@+id/goals_calendar"
                 />
     </LinearLayout>
