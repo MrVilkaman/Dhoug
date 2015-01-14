@@ -1,4 +1,4 @@
-package donnu.zolotarev.dhoug.Fragments;
+package donnu.zolotarev.dhoug.Fragments.Dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;

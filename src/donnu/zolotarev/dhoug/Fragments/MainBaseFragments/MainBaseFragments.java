@@ -1,50 +1,40 @@
-package donnu.zolotarev.dhoug.Fragments;
+package donnu.zolotarev.dhoug.Fragments.MainBaseFragments;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
-import donnu.zolotarev.dhoug.DataModels.NoteItem;
-import donnu.zolotarev.dhoug.Utils.Utils;
+import donnu.zolotarev.dhoug.Fragments.BaseFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
+import donnu.zolotarev.dhoug.Utils.Utils;
 
-import java.util.ArrayList;
+abstract class MainBaseFragments extends BaseFragment {
 
-public class NotesFragment extends BaseFragment {
-
-    private NotesAdapter adapted;
+    protected ListAdapter baseAdapted;
 
     @InjectView(R.id.list)
-    ListView listView;
+    protected ListView listView;
 
     @InjectView(R.id.goals_current_data)
-    TextView calendar;
+    protected TextView calendar;
 
     @InjectView(R.id.goals_goals_period)
-    TextView period;
+    protected TextView period;
 
-    private PopupMenu popupMenu;
+    protected PopupMenu popupMenu;
+
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (adapted == null) {
-            ArrayList<NoteItem> items = new ArrayList<NoteItem>();
-            items.add(new NoteItem());
-            items.add(new NoteItem());
-            items.add(new NoteItem());
-            adapted = new NotesAdapter(activity,items);
-        }
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,7 +46,12 @@ public class NotesFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        listView.setAdapter(adapted);
+        listView.setAdapter(baseAdapted);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.goals_menu, menu);
     }
 
 
@@ -67,7 +62,6 @@ public class NotesFragment extends BaseFragment {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
-
                     case R.id.day:
                         period.setText(R.string.period_day);
                         return true;
@@ -91,4 +85,6 @@ public class NotesFragment extends BaseFragment {
     void onPediod(){
         popupMenu.show();
     }
+
+
 }

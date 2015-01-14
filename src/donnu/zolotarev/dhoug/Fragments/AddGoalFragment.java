@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
+import donnu.zolotarev.dhoug.Fragments.Dialogs.DatePickerFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
 import donnu.zolotarev.dhoug.Utils.Utils;
@@ -67,7 +68,6 @@ public class AddGoalFragment extends BaseFragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_accept:
-               toast("Добавил!");
                 sendResult(ADD_NEW);
                 back();
                 return true;
@@ -75,7 +75,6 @@ public class AddGoalFragment extends BaseFragment {
                 back();
                 return true;
         }
-
         return false;
     }
 
@@ -111,7 +110,7 @@ public class AddGoalFragment extends BaseFragment {
 
     private void setupPopupMenu() {
         popupMenu = new PopupMenu(getActivity(), period);
-        popupMenu.inflate(R.menu.periodmenu); // Для Android 4.0
+        popupMenu.inflate(R.menu.add_periodmenu); // Для Android 4.0
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

@@ -6,9 +6,9 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.view.MenuItem;
-import donnu.zolotarev.dhoug.Fragments.GoalsFragment;
+import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
-import donnu.zolotarev.dhoug.Fragments.NotesFragment;
+import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
 import donnu.zolotarev.dhoug.Interface.IOpenMenu;
 import donnu.zolotarev.dhoug.R;
 
