@@ -1,53 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:background="@null"
+              android:orientation="horizontal"
+              android:weightSum="100"
+              android:layout_height="match_parent">
+<RelativeLayout
                 android:layout_width="wrap_content"
                 android:background="@color/left_menu_button"
                 android:layout_height="match_parent">
+        <LinearLayout
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+            <Button style="@style/LeftMenuButton"
+                    android:drawableLeft="@drawable/ic_action_location_found"
+                    android:id="@+id/left_menu_goals"
+                    android:text="@string/left_menu_goals"/>
+            <Button style="@style/LeftMenuButton"
+                    android:drawableLeft="@drawable/ic_action_labels"
+                    android:id="@+id/left_menu_nots"
+                    android:text="@string/left_menu_nots"/>
+            <Button style="@style/LeftMenuButton"
+                    android:drawableLeft="@drawable/ic_action_data_usage"
+                    android:id="@+id/left_menu_tasks"
+                    android:text="@string/left_menu_tasks"/>
+            <Button style="@style/LeftMenuButton"
+                    android:drawableLeft="@drawable/ic_action_paste"
+                    android:id="@+id/left_menu_buys"
+                    android:text="@string/left_menu_buys"/>
+        </LinearLayout>
 
-    <LinearLayout
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
-        <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_location_found"
-                android:id="@+id/left_menu_goals"
-                android:text="@string/left_menu_goals"/>
-        <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_labels"
-                android:id="@+id/left_menu_nots"
-                android:text="@string/left_menu_nots"/>
-        <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_data_usage"
-                android:id="@+id/left_menu_tasks"
-                android:text="@string/left_menu_tasks"/>
-        <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_paste"
-                android:id="@+id/left_menu_buys"
-                android:text="@string/left_menu_buys"/>
-    </LinearLayout>
+        <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content">
+            <Button style="@style/LeftMenuButton"
+                    android:drawableLeft="@drawable/ic_action_settings"
+                    android:id="@+id/left_menu_settings"
+                    android:text="@string/left_menu_settings"/>
+            <Button style="@style/LeftMenuButton"
+                    android:drawableLeft="@drawable/ic_action_about"
+                    android:id="@+id/left_menu_about"
+                    android:text="@string/left_menu_about"/>
+            <Button style="@style/LeftMenuButton"
+                    android:drawableLeft="@drawable/ic_action_search"
+                    android:id="@+id/left_menu_search"
+                    android:text="@string/left_menu_search"/>
 
-
-    <LinearLayout
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:orientation="vertical"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content">
-        <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_settings"
-                android:id="@+id/left_menu_settings"
-                android:text="@string/left_menu_settings"/>
-        <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_about"
-                android:id="@+id/left_menu_about"
-                android:text="@string/left_menu_about"/>
-        <Button style="@style/LeftMenuButton"
-                android:drawableLeft="@drawable/ic_action_search"
-                android:id="@+id/left_menu_search"
-                android:text="@string/left_menu_search"/>
-
-    </LinearLayout>
-
+        </LinearLayout>
 </RelativeLayout>
+   <FrameLayout
+           android:background="@color/left_menu_button"
+           android:layout_weight="70"
+           android:layout_width="0dp"
+           android:layout_height="match_parent"></FrameLayout>
+</LinearLayout>

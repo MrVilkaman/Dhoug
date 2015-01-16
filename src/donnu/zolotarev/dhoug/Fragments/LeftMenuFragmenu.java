@@ -2,7 +2,7 @@ package donnu.zolotarev.dhoug.Fragments;
 
 import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.widget.SlidingPaneLayout;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,31 +15,37 @@ import donnu.zolotarev.dhoug.R;
 public class LeftMenuFragmenu extends BaseFragment {
 
 
-    private SlidingPaneLayout drawerLayout;
+    private DrawerLayout drawerLayout;
     private int lastTitle = R.string.left_menu_goals;;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.left_menu_fragmenu,inflater,container);
-        drawerLayout = (SlidingPaneLayout) ButterKnife.findById(getActivity(), R.id.drawer_layout);
-        drawerLayout.setPanelSlideListener(new SlidingPaneLayout.PanelSlideListener() {
+        drawerLayout = (DrawerLayout) ButterKnife.findById(getActivity(), R.id.drawer_layout);
+        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
-            public void onPanelSlide(View view, float v) {
+            public void onDrawerSlide(View view, float v) {
 
             }
 
             @Override
-            public void onPanelOpened(View view) {
+            public void onDrawerOpened(View view) {
                 ActionBar bar = getActivity().getActionBar();
                 bar.setTitle(R.string.app_name);
             }
 
             @Override
-            public void onPanelClosed(View view) {
+            public void onDrawerClosed(View view) {
                 ActionBar bar = getActivity().getActionBar();
                 bar.setTitle(lastTitle);
             }
+
+            @Override
+            public void onDrawerStateChanged(int i) {
+
+            }
         });
+
         ActionBar bar = getActivity().getActionBar();
         bar.setTitle(lastTitle);
         return view;
@@ -58,7 +64,7 @@ public class LeftMenuFragmenu extends BaseFragment {
                 break;
         }
 
-        drawerLayout.closePane();
+        drawerLayout.closeDrawers();
     }
 
 

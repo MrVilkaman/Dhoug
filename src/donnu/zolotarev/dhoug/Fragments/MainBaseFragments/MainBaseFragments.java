@@ -29,9 +29,6 @@ abstract class MainBaseFragments extends BaseFragment {
 
     protected PopupMenu popupMenu;
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

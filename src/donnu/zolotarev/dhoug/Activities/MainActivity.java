@@ -4,7 +4,8 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
-import android.support.v4.widget.SlidingPaneLayout;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.MenuItem;
 import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
@@ -14,7 +15,7 @@ import donnu.zolotarev.dhoug.R;
 
 public class MainActivity extends SingleFragmentActivity  {
 
-    private SlidingPaneLayout drawerLayout;
+    private DrawerLayout drawerLayout;
 
     private IOpenMenu openMenu;
 
@@ -31,7 +32,7 @@ public class MainActivity extends SingleFragmentActivity  {
     }
 
     private void createLeftPanel() {
-        drawerLayout = (SlidingPaneLayout) findViewById(R.id.drawer_layout);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         FragmentManager fm = getFragmentManager();
         Fragment myFragment = fm.findFragmentById(R.id.menu_frame);
         if (myFragment == null){
@@ -62,10 +63,10 @@ public class MainActivity extends SingleFragmentActivity  {
         int itemId = item.getItemId();
         switch (itemId) {
             case android.R.id.home:
-                if (drawerLayout.isOpen()) {
-                    drawerLayout.closePane();
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawers();
                 }else {
-                    drawerLayout.openPane();
+                    drawerLayout.openDrawer(Gravity.LEFT);
                 }
                 return true;
         }
