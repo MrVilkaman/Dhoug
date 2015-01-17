@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -81,11 +80,11 @@ public class AddGoalFragment extends AddBaseFragment {
         Bundle arg = getArguments();
 
         period.setText(R.string.notes_validate_in_perpetuity);
-        if (arg == null) {
+        goalItemTemp = (GoalItem)arg.get(ITEM);
+        if (arg == null || (arg != null && goalItemTemp == null)) {
             goalItemTemp = new GoalItem();
            return;
         }
-        goalItemTemp = (GoalItem)arg.get(ITEM);
         title.setText(goalItemTemp.getTitle());
         subTitle.setText(goalItemTemp.getDescription());
         subTitle.setText(goalItemTemp.getDescription());
@@ -178,10 +177,6 @@ public class AddGoalFragment extends AddBaseFragment {
         goalItemTemp.setTitle(getText(title));
         goalItemTemp.setDescription(getText(subTitle));
         return goalItemTemp;
-    }
-
-    private String getText(TextView view){
-         return  view.getText().toString();
     }
 
     PopupMenu.OnMenuItemClickListener periodListener = new PopupMenu.OnMenuItemClickListener() {

@@ -13,6 +13,7 @@ import donnu.zolotarev.dhoug.Fragments.GoalShowPage;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GoalsFragment extends MainBaseFragments {
@@ -36,8 +37,8 @@ public class GoalsFragment extends MainBaseFragments {
         }
         adapter.setClickListener(new IClick() {
             @Override
-            public void click(GoalItem goalItem) {
-                GoalShowPage showPage = GoalShowPage.open(goalItem);
+            public void click(Serializable goalItem) {
+                GoalShowPage showPage = GoalShowPage.open((GoalItem)goalItem);
                 showFragment(showPage, true);
             }
         });

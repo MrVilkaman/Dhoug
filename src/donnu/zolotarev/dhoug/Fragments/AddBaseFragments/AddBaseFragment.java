@@ -64,4 +64,8 @@ public abstract class AddBaseFragment extends BaseFragment {
 
     protected abstract Serializable getItem();
 
+    public String getText(TextView view){
+        return  view.getText().toString();
+    }
+
 }

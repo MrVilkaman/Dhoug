@@ -1,7 +1,7 @@
 package donnu.zolotarev.dhoug.Interface;
 
-import donnu.zolotarev.dhoug.DataModels.GoalItem;
+import java.io.Serializable;
 
 public interface IClick {
-    void click(GoalItem goalItem);
+    void click(Serializable goalItem);
 }

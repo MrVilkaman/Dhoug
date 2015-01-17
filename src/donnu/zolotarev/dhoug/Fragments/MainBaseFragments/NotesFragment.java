@@ -6,10 +6,13 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
+import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class NotesFragment extends MainBaseFragments {
@@ -27,14 +30,27 @@ public class NotesFragment extends MainBaseFragments {
             baseAdapted = new NotesAdapter(activity,items);
             adapter = (NotesAdapter)baseAdapted;
         }
+        adapter.setClickListener(new IClick() {
+            @Override
+            public void click(Serializable goalItem) {
+                AddNotesFragment showPage = AddNotesFragment.open(NotesFragment.this,(NoteItem)goalItem, AddBaseFragment.SHOW);
+                showFragment(showPage, true);
+            }
+        });
     }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        adapter.setClickListener(null);
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_add:
-                AddNotesFragment notesFragment = new AddNotesFragment();
-                notesFragment.setTargetFragment(this, AddNotesFragment.ADD_NEW);
+                AddNotesFragment notesFragment = AddNotesFragment.createNew(this);
                 showFragment(notesFragment, true);
                 return true;
             case R.id.menu_edit:
@@ -63,8 +79,7 @@ public class NotesFragment extends MainBaseFragments {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()){
             case CM_EDIT:
-                AddNotesFragment notesFragment = AddNotesFragment.edit(adapter.getSomeItem((int)menuInfo.id));
-                notesFragment.setTargetFragment(this, AddNotesFragment.CHANGE);
+                AddNotesFragment notesFragment = AddNotesFragment.open(this,adapter.getSomeItem((int) menuInfo.id),AddNotesFragment.CHANGE);
                 showFragment(notesFragment, true);
                 return true;
         }

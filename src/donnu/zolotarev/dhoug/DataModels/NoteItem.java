@@ -6,6 +6,8 @@ public class NoteItem implements Serializable {
 
 
     private int id;
+    private String title;
+    private String discription;
 
     public int getId() {
         return id;
@@ -13,5 +15,21 @@ public class NoteItem implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDiscription() {
+        return discription;
+    }
+
+    public void setDiscription(String discription) {
+        this.discription = discription;
     }
 }

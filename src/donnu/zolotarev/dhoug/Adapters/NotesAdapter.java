@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
     private final ArrayList<NoteItem> items;
     private final LayoutInflater layoutInflater;
 
+    private IClick clickListener;
 
     public NotesAdapter(Activity context) {
         items = new ArrayList<NoteItem>();
@@ -59,6 +61,13 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
         holder = (ViewHolder)view.getTag();
         goalItem = getSomeItem(i);
 
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.click(goalItem);
+            }
+        });
+
         holder.checkBox.setVisibility(View.GONE);
         return view;
     }
@@ -95,5 +104,13 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
             title =  ButterKnife.findById(view, R.id.goal_item_title);
             subTitle =  ButterKnife.findById(view, R.id.goal_item_sub_title);
         }
+    }
+
+    public IClick getClickListener() {
+        return clickListener;
+    }
+
+    public void setClickListener(IClick clickListener) {
+        this.clickListener = clickListener;
     }
 }

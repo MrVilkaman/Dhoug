@@ -15,6 +15,7 @@ public class GoalItem implements Serializable {
 
     public GoalItem() {
         repetition = GOAL_REPETITION.NO;
+        description = title = "";
 //        timeStart = timeEnd = new Date();
     }
 
