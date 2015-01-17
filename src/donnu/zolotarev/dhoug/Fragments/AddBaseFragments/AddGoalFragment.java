@@ -80,10 +80,21 @@ public class AddGoalFragment extends AddBaseFragment {
 
     private void updateViews() {
         Bundle arg = getArguments();
-        // arg == null
         lastRepetition = GOAL_REPETITION.NO;
 
         period.setText(R.string.notes_validate_in_perpetuity);
+        if (arg == null) {
+           return;
+        }
+        GoalItem goalItem = (GoalItem)arg.get(ITEM);
+        title.setText(goalItem.getTitle());
+        subTitle.setText(goalItem.getDescription());
+        subTitle.setText(goalItem.getDescription());
+        endDate.setText(Utils.getFormatData(Constants.DATE_FORMAT, goalItem.getTimeEnd()));
+        endTime.setText(Utils.getFormatData(Constants.TIME_FORMAT, goalItem.getTimeEnd()));
+        beginDate.setText(Utils.getFormatData(Constants.DATE_FORMAT, goalItem.getTimeStart()));
+        beginTime.setText(Utils.getFormatData(Constants.TIME_FORMAT, goalItem.getTimeStart()));
+
     }
 
     @OnClick({R.id.add_goal_begin_data,R.id.add_goal_end_data})
