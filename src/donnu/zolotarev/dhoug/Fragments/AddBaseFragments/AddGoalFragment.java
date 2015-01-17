@@ -1,5 +1,6 @@
 package donnu.zolotarev.dhoug.Fragments.AddBaseFragments;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
@@ -16,17 +17,15 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Fragments.Dialogs.DatePickerFragment;
+import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
 import donnu.zolotarev.dhoug.Utils.Utils;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class AddGoalFragment extends AddBaseFragment {
-
     @InjectView(R.id.add_goal_repeat)
     EditText period;
 
@@ -49,31 +48,31 @@ public class AddGoalFragment extends AddBaseFragment {
     EditText endDate;
 
     private PopupMenu popupMenu;
-
     private GoalItem goalItemTemp;
+    private int mode;
 
-    PopupMenu.OnMenuItemClickListener periodListener = new PopupMenu.OnMenuItemClickListener() {
-        @Override
-        public boolean onMenuItemClick(MenuItem item) {
-            period.setText(item.getTitle());
-            return true;
-        }
-    };
+    @SuppressLint("ValidFragment")
+    private AddGoalFragment() {
+    }
 
-    public static AddGoalFragment edit(GoalItem someItem) {
+    public static AddGoalFragment open(GoalsFragment target, GoalItem someItem, int mode) {
         AddGoalFragment fragment = new AddGoalFragment();
         Bundle boundle = new Bundle();
         boundle.putSerializable(ITEM,someItem);
+        boundle.putSerializable(MODE,mode);
         fragment.setArguments(boundle);
+        fragment.setTargetFragment(target,mode);
         return fragment;
     }
 
+    public static AddGoalFragment createNew(GoalsFragment target) {
+        return open(target,null,ADD_NEW);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_add_goals, inflater, container);
         popupMenu = setupPopupMenu(period, R.menu.add_periodmenu, periodListener);
-
         updateViews();
         return view;
     }
@@ -98,33 +97,44 @@ public class AddGoalFragment extends AddBaseFragment {
             beginDate.setText(Utils.getFormatData(Constants.DATE_FORMAT, goalItemTemp.getTimeStart()));
             beginTime.setText(Utils.getFormatData(Constants.TIME_FORMAT, goalItemTemp.getTimeStart()));
         }
+        mode = getArguments().getInt(MODE);
+        title.setEnabled(mode != SHOW);
+        subTitle.setEnabled(mode != SHOW);
 
     }
 
     @OnClick(R.id.add_goal_begin_data)
     void clickBData(View view){
-        showDatepickerDialog(view.getId(),goalItemTemp.getTimeStart());
+        if (mode != SHOW) {
+            showDatepickerDialog(view.getId(),goalItemTemp.getTimeStart());
+        }
     }
 
     @OnClick(R.id.add_goal_end_data)
     void clickEData(View view){
-        showDatepickerDialog(view.getId(),goalItemTemp.getTimeEnd());
+        if (mode != SHOW) {
+            showDatepickerDialog(view.getId(),goalItemTemp.getTimeEnd());
+        }
     }
 
     @OnClick(R.id.add_goal_begin_time)
     void clickBTime(View view){
-        showTimepickerDialog(view.getId(), goalItemTemp.getTimeStart());
+        if (mode != SHOW) {
+            showTimepickerDialog(view.getId(), goalItemTemp.getTimeStart());
+        }
     }
     @OnClick( R.id.add_goal_end_time)
     void clickETime(View view){
-        showTimepickerDialog(view.getId(), goalItemTemp.getTimeEnd());
+        if (mode != SHOW) {
+            showTimepickerDialog(view.getId(), goalItemTemp.getTimeEnd());
+        }
     }
-
-
 
     @OnClick(R.id.add_goal_repeat)
     void clickPeriod(){
-        popupMenu.show();
+        if (mode != SHOW) {
+            popupMenu.show();
+        }
     }
 
     private void showTimepickerDialog(int viewId, Date data) {
@@ -174,24 +184,11 @@ public class AddGoalFragment extends AddBaseFragment {
          return  view.getText().toString();
     }
 
-    private Date getTime(TextView view,TextView view2){
-        Date time = new Date(0);
-        //
-        time = addTime(time,Constants.DATE_FORMAT,view);
-        time = addTime(time,Constants.TIME_FORMAT,view2);
-        return time;
-    }
-
-    private Date addTime(Date time,String format,TextView view){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
-        String date = getText(view);
-        if (!date.isEmpty()) {
-            try {
-                time.setTime(simpleDateFormat.parse(date).getTime() + time.getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+    PopupMenu.OnMenuItemClickListener periodListener = new PopupMenu.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            period.setText(item.getTitle());
+            return true;
         }
-        return time;
-    }
+    };
 }

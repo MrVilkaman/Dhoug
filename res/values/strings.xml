@@ -53,8 +53,13 @@
     <string name="notes_validate_week">Неделя</string>
     <string name="notes_validate_mounth">Месяц</string>
     <string name="notes_validate_year">Год</string>
+
+    <!--Конекстное меню для listview-->
     <string name="context_menu_edit">Редактировать</string>
     <string name="context_menu_delete">Удалить</string>
+
+    <!--Цели полностью-->
+    <string name="full_goal_notes_text">Заметки к цели</string>
 
 
 </resources>

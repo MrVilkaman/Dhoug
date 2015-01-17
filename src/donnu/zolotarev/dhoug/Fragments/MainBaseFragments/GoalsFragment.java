@@ -2,11 +2,15 @@ package donnu.zolotarev.dhoug.Fragments.MainBaseFragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
+import donnu.zolotarev.dhoug.Fragments.GoalShowPage;
+import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
 import java.util.ArrayList;
@@ -30,24 +34,38 @@ public class GoalsFragment extends MainBaseFragments {
             baseAdapted = new GoalsAdapter(activity,items);
             adapter = (GoalsAdapter)baseAdapted;
         }
+        adapter.setClickListener(new IClick() {
+            @Override
+            public void click(GoalItem goalItem) {
+                GoalShowPage showPage = GoalShowPage.open(goalItem);
+                showFragment(showPage, true);
+            }
+        });
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        adapter.setClickListener(null);
+    }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_add:
-                AddGoalFragment goalFragment = new AddGoalFragment();
-                goalFragment.setTargetFragment(this,AddGoalFragment.ADD_NEW);
-                showFragment(goalFragment, true);
+                showFragment(AddGoalFragment.createNew(this), true);
                 return true;
             case R.id.menu_edit:
                 return true;
         }
         return false;
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -69,14 +87,10 @@ public class GoalsFragment extends MainBaseFragments {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()){
             case CM_EDIT:
-                AddGoalFragment goalsFragment = AddGoalFragment.edit(adapter.getSomeItem((int)menuInfo.id));
-                goalsFragment.setTargetFragment(this, AddGoalFragment.CHANGE);
+                AddGoalFragment goalsFragment = AddGoalFragment.open(this, adapter.getSomeItem((int) menuInfo.id), AddGoalFragment.CHANGE);
                 showFragment(goalsFragment, true);
                 return true;
         }
         return false;
     }
-
-
-
 }

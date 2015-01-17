@@ -13,8 +13,10 @@ import java.io.Serializable;
 public abstract class AddBaseFragment extends BaseFragment {
 
     public static final int ADD_NEW = 0;
-    public static final int CHANGE = 1;
+    public static final int SHOW = 1;
+    public static final int CHANGE = 2;
     public static final String ITEM = "item";
+    protected static final String MODE = "mode";
 
 
     @Override
@@ -42,7 +44,6 @@ public abstract class AddBaseFragment extends BaseFragment {
         }
         return false;
     }
-
 
     protected PopupMenu setupPopupMenu(final TextView view, int layoutID, PopupMenu.OnMenuItemClickListener listener) {
         PopupMenu popupMenu = new PopupMenu(getActivity(), view);

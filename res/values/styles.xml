@@ -93,5 +93,12 @@
         <item name="android:textColor">@color/addgoal_text</item>
     </style>
 
+    <style name="Text.NotesForGoalTitle">
+        <item name="android:textSize">@dimen/primary_text_size</item>
+        <item name="android:textColor">@color/goals_text_color</item>
+        <item name="android:layout_marginLeft">@dimen/edit_text_padding</item>
+        <item name="android:layout_marginRight">@dimen/edit_text_padding</item>
+    </style>
+
 
 </resources>

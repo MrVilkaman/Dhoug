@@ -5,6 +5,7 @@ import android.view.*;
 import android.widget.*;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import butterknife.OnItemClick;
 import donnu.zolotarev.dhoug.Adapters.IAdapter;
 import donnu.zolotarev.dhoug.Fragments.BaseFragment;
 import donnu.zolotarev.dhoug.R;
@@ -96,5 +97,9 @@ abstract class MainBaseFragments extends BaseFragment {
                return true;
        }
         return false;
+    }
+
+    @OnItemClick(R.id.list) void onItemClick(int position) {
+        toast("Clicked position " + position + "!");
     }
 }

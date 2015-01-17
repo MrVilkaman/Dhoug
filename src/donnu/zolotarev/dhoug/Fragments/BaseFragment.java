@@ -22,6 +22,12 @@ public class BaseFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
     protected void toast(int messageId) {
         Activity activity = getActivity();
         if (activity != null) {

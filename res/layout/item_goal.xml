@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:orientation="horizontal"
+              android:descendantFocusability="blocksDescendants"
               android:layout_height="match_parent"
         >
     <RelativeLayout android:layout_width="match_parent"
+                    android:descendantFocusability="blocksDescendants"
                     android:background="@color/goal_item_backgrond_color"
                     android:layout_marginLeft="@dimen/default_separator_margin"
                     android:layout_marginRight="@dimen/goal_item_left_right_margin"

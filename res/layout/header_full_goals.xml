@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:background="@color/goals_backgrond_color"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+    <LinearLayout android:layout_width="match_parent"
+                  android:orientation="vertical"
+                    android:background="@color/goal_item_backgrond_color"
+                    android:layout_marginLeft="@dimen/default_separator_margin"
+                    android:layout_marginRight="@dimen/goal_item_left_right_margin"
+                    android:layout_marginTop="@dimen/goal_item_top_margin"
+                    android:layout_height="match_parent">
+
+        <TextView style="@style/Text"
+                  android:textSize="@dimen/primary_text_size"
+                  android:textColor="@color/goal_item_title_text_color"
+                  android:id="@+id/full_goal_title"
+                  android:layout_alignParentTop="true"
+                  android:layout_alignParentLeft="true"
+                  android:layout_alignRight="@+id/goal_item_sub_title"/>
+        <TextView
+                style="@style/Text"
+                android:textSize="@dimen/secondary_text_size"
+                android:textColor="@color/goal_item_sub_title_text_color"
+                android:id="@+id/full_goal_decription"
+                android:layout_below="@+id/full_goal_decription"
+                android:layout_alignParentLeft="true"
+                />
+    </LinearLayout>
+    <TextView style="@style/Text.NotesForGoalTitle"
+              android:text="@string/full_goal_notes_text"
+            />
+</LinearLayout>

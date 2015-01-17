@@ -12,6 +12,7 @@ import android.widget.TextView;
 import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.R;
+import donnu.zolotarev.dhoug.Interface.IClick;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +25,7 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
     private final LayoutInflater layoutInflater;
 
     private int devider = 1001;
+    private IClick clickListener;
 
     public GoalsAdapter(Activity context) {
        items = new ArrayList<GoalItem>();
@@ -69,21 +71,25 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
                 holder = (ViewHolder)view.getTag();
             }
 
-                goalItem = getSomeItem(i < devider?i:i-1);
-                holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        goalItem.setDone(b);
-                        sort();
-                    }
-                });
+            goalItem = getSomeItem(i < devider?i:i-1);
+            holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                    goalItem.setDone(b);
+                    sort();
+                }
+            });
             holder.title.setText(goalItem.getTitle());
             holder.subTitle.setText(goalItem.getDescription());
 
             holder.checkBox.setChecked(goalItem.isDone());
             view.setLongClickable(true);
-
-
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.click(goalItem);
+                }
+            });
         } else{
             if (devider != items.size()) {
                 view = inflateTextView(viewGroup);
@@ -94,6 +100,7 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
                         return true;
                     }
                 });
+
             }else{
                 view = new View(viewGroup.getContext());
             }
@@ -158,5 +165,13 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
             title =  ButterKnife.findById(view, R.id.goal_item_title);
             subTitle =  ButterKnife.findById(view, R.id.goal_item_sub_title);
         }
+    }
+
+    public IClick getClickListener() {
+        return clickListener;
+    }
+
+    public void setClickListener(IClick clickListener) {
+        this.clickListener = clickListener;
     }
 }
