@@ -1,5 +1,7 @@
 package donnu.zolotarev.dhoug.DataModels;
 
+import donnu.zolotarev.dhoug.Enums.NOTES_VALIDATE;
+
 import java.io.Serializable;
 
 public class NoteItem implements Serializable {
@@ -8,13 +10,14 @@ public class NoteItem implements Serializable {
     private int id;
     private String title;
     private String discription;
+    private NOTES_VALIDATE validate;
+
+    public NoteItem() {
+        validate = NOTES_VALIDATE.IN_PERPETUITY;
+    }
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -31,5 +34,13 @@ public class NoteItem implements Serializable {
 
     public void setDiscription(String discription) {
         this.discription = discription;
+    }
+
+    public NOTES_VALIDATE getValidate() {
+        return validate;
+    }
+
+    public void setValidate(NOTES_VALIDATE validate) {
+        this.validate = validate;
     }
 }

@@ -54,21 +54,22 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         ViewHolder holder;
-        final NoteItem goalItem;
+        final NoteItem noteItem;
         if (view == null) {
             view = inflateNewView(viewGroup);
         }
         holder = (ViewHolder)view.getTag();
-        goalItem = getSomeItem(i);
-
+        noteItem = getSomeItem(i);
+        view.setLongClickable(true);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.click(goalItem);
+                clickListener.click(noteItem);
             }
         });
-
-        holder.checkBox.setVisibility(View.GONE);
+        holder.title.setText(noteItem.getTitle());
+         holder.subTitle.setText(noteItem.getDiscription());
+        holder.checkBox.setVisibility(View.INVISIBLE);
         return view;
     }
 

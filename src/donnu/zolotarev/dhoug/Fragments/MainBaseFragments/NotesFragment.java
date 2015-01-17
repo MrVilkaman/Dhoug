@@ -24,9 +24,10 @@ public class NotesFragment extends MainBaseFragments {
         super.onAttach(activity);
         if (baseAdapted == null) {
             ArrayList<NoteItem> items = new ArrayList<NoteItem>();
-            items.add(new NoteItem());
-            items.add(new NoteItem());
-            items.add(new NoteItem());
+            NoteItem item = new NoteItem();
+            //todo убрать
+            item.setTitle("Новая заметка!");
+            items.add(item);
             baseAdapted = new NotesAdapter(activity,items);
             adapter = (NotesAdapter)baseAdapted;
         }
