@@ -1,5 +1,6 @@
 package donnu.zolotarev.dhoug.Fragments.AddBaseFragments;
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
-import donnu.zolotarev.dhoug.Enums.GOAL_REPETITION;
 import donnu.zolotarev.dhoug.Fragments.Dialogs.DatePickerFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
@@ -50,7 +50,7 @@ public class AddGoalFragment extends AddBaseFragment {
 
     private PopupMenu popupMenu;
 
-    private GOAL_REPETITION lastRepetition;
+    private GoalItem goalItemTemp;
 
     PopupMenu.OnMenuItemClickListener periodListener = new PopupMenu.OnMenuItemClickListener() {
         @Override
@@ -80,75 +80,94 @@ public class AddGoalFragment extends AddBaseFragment {
 
     private void updateViews() {
         Bundle arg = getArguments();
-        lastRepetition = GOAL_REPETITION.NO;
 
         period.setText(R.string.notes_validate_in_perpetuity);
         if (arg == null) {
+            goalItemTemp = new GoalItem();
            return;
         }
-        GoalItem goalItem = (GoalItem)arg.get(ITEM);
-        title.setText(goalItem.getTitle());
-        subTitle.setText(goalItem.getDescription());
-        subTitle.setText(goalItem.getDescription());
-        endDate.setText(Utils.getFormatData(Constants.DATE_FORMAT, goalItem.getTimeEnd()));
-        endTime.setText(Utils.getFormatData(Constants.TIME_FORMAT, goalItem.getTimeEnd()));
-        beginDate.setText(Utils.getFormatData(Constants.DATE_FORMAT, goalItem.getTimeStart()));
-        beginTime.setText(Utils.getFormatData(Constants.TIME_FORMAT, goalItem.getTimeStart()));
+        goalItemTemp = (GoalItem)arg.get(ITEM);
+        title.setText(goalItemTemp.getTitle());
+        subTitle.setText(goalItemTemp.getDescription());
+        subTitle.setText(goalItemTemp.getDescription());
+        if (goalItemTemp.getTimeEnd() != null) {
+            endDate.setText(Utils.getFormatData(Constants.DATE_FORMAT, goalItemTemp.getTimeEnd()));
+            endTime.setText(Utils.getFormatData(Constants.TIME_FORMAT, goalItemTemp.getTimeEnd()));
+        }
+        if (goalItemTemp.getTimeStart() != null) {
+            beginDate.setText(Utils.getFormatData(Constants.DATE_FORMAT, goalItemTemp.getTimeStart()));
+            beginTime.setText(Utils.getFormatData(Constants.TIME_FORMAT, goalItemTemp.getTimeStart()));
+        }
 
     }
 
-    @OnClick({R.id.add_goal_begin_data,R.id.add_goal_end_data})
-    void clickData(View view){
-        showDatepickerDialog(view.getId());
+    @OnClick(R.id.add_goal_begin_data)
+    void clickBData(View view){
+        showDatepickerDialog(view.getId(),goalItemTemp.getTimeStart());
     }
 
-    @OnClick({R.id.add_goal_begin_time,R.id.add_goal_end_time})
-    void clickTime(View view){
-        showTimepickerDialog(view.getId());
+    @OnClick(R.id.add_goal_end_data)
+    void clickEData(View view){
+        showDatepickerDialog(view.getId(),goalItemTemp.getTimeEnd());
     }
+
+    @OnClick(R.id.add_goal_begin_time)
+    void clickBTime(View view){
+        showTimepickerDialog(view.getId(), goalItemTemp.getTimeStart());
+    }
+    @OnClick( R.id.add_goal_end_time)
+    void clickETime(View view){
+        showTimepickerDialog(view.getId(), goalItemTemp.getTimeEnd());
+    }
+
+
 
     @OnClick(R.id.add_goal_repeat)
     void clickPeriod(){
         popupMenu.show();
     }
 
-    private void showTimepickerDialog(int viewId) {
+    private void showTimepickerDialog(int viewId, Date data) {
         FragmentManager fm = getFragmentManager();
-        DatePickerFragment df = DatePickerFragment.newInstance(new Date(), viewId);
+        DatePickerFragment df = DatePickerFragment.newInstance(data, viewId);
         df.setTargetFragment(this, DatePickerFragment.REQUEST_TIME);
         df.show(fm, DatePickerFragment.DIALOG_DATE);
     }
 
-    private void showDatepickerDialog(int viewId) {
+    private void showDatepickerDialog(int viewId, Date data) {
         FragmentManager fm = getFragmentManager();
-        DatePickerFragment df = DatePickerFragment.newInstance(new Date(), viewId);
+        DatePickerFragment df = DatePickerFragment.newInstance(data, viewId);
         df.setTargetFragment(this, DatePickerFragment.REQUEST_DATE);
         df.show(fm, DatePickerFragment.DIALOG_DATE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case DatePickerFragment.REQUEST_DATE:
-            case DatePickerFragment.REQUEST_TIME:
-                Date date = (Date) data.getExtras().getSerializable(DatePickerFragment.EXTRA_DATA);
-                int id = data.getIntExtra(DatePickerFragment.EXTRA_VIEW_ID,-1);
-                String format = requestCode  == DatePickerFragment.REQUEST_DATE?Constants.DATE_FORMAT:Constants.TIME_FORMAT;
-                ((EditText) ButterKnife.findById(getView(), id)).setText(Utils.getFormatData(format, date));
-                break;
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case DatePickerFragment.REQUEST_DATE:
+                case DatePickerFragment.REQUEST_TIME:
+                    Date date = (Date) data.getExtras().getSerializable(DatePickerFragment.EXTRA_DATA);
+                    int id = data.getIntExtra(DatePickerFragment.EXTRA_VIEW_ID,-1);
+                    String format = requestCode  == DatePickerFragment.REQUEST_DATE?Constants.DATE_FORMAT:Constants.TIME_FORMAT;
+                    ((EditText) ButterKnife.findById(getView(), id)).setText(Utils.getFormatData(format, date));
+                    if (id == R.id.add_goal_begin_data || id == R.id.add_goal_begin_time) {
+                        goalItemTemp.setTimeStart(date);
+                    }else{
+                        goalItemTemp.setTimeEnd(date);
+                    }
+
+                    break;
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
     protected Serializable getItem() {
-        GoalItem goalItem = new GoalItem();
-        goalItem.setRepetition(lastRepetition);
-        goalItem.setTitle(getText(title));
-        goalItem.setDescription(getText(subTitle));
-        goalItem.setTimeStart(getTime(beginDate,beginTime));
-        goalItem.setTimeEnd(getTime(endDate,endTime));
-        return goalItem;
+        goalItemTemp.setTitle(getText(title));
+        goalItemTemp.setDescription(getText(subTitle));
+        return goalItemTemp;
     }
 
     private String getText(TextView view){

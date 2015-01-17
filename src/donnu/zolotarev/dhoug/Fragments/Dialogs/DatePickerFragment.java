@@ -41,6 +41,9 @@ public class DatePickerFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         date = (Date) getArguments().getSerializable(EXTRA_DATA);
+        if (date == null) {
+            date = new Date();
+        }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
 
@@ -58,7 +61,6 @@ public class DatePickerFragment extends DialogFragment {
         } else {
             view = createYearDialog(year, month, day, hout, minute);
         }
-
 
         return new AlertDialog.Builder(getActivity())
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
@@ -90,7 +92,6 @@ public class DatePickerFragment extends DialogFragment {
 
         return view;
     }
-
 
     private View createDateDialog(final int year, final int month, final int day, final int hout, final int minute) {
         View view = getActivity().getLayoutInflater()
