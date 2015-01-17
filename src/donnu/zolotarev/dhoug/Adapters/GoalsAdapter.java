@@ -77,22 +77,26 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
                         sort();
                     }
                 });
-
-
+            holder.title.setText(goalItem.getTitle());
+            holder.subTitle.setText(goalItem.getDescription());
 
             holder.checkBox.setChecked(goalItem.isDone());
             view.setLongClickable(true);
 
 
         } else{
-            view = inflateTextView(viewGroup);
-            view.setLongClickable(false);
-            view.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    return true;
-                }
-            });
+            if (devider != items.size()) {
+                view = inflateTextView(viewGroup);
+                view.setLongClickable(false);
+                view.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        return true;
+                    }
+                });
+            }else{
+                view = new View(viewGroup.getContext());
+            }
         }
 
         return view;

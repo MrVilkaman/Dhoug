@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
-import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.R;
 
@@ -22,12 +21,12 @@ public class GoalsFragment extends MainBaseFragments {
         super.onAttach(activity);
         if (baseAdapted == null) {
             ArrayList<GoalItem> items = new ArrayList<GoalItem>();
-            items.add(new GoalItem());
-            GoalItem goalItem = new GoalItem();
-            goalItem.setDone(true);
-            items.add(goalItem);
-            items.add(new GoalItem());
-            items.add(new GoalItem());
+            // todo remove test data
+            GoalItem item = new GoalItem();
+            item.setTitle("Курлык мля!");
+            item.setDescription("Лети к цели!");
+            items.add(item);
+
             baseAdapted = new GoalsAdapter(activity,items);
             adapter = (GoalsAdapter)baseAdapted;
         }
