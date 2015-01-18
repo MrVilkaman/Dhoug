@@ -44,7 +44,6 @@ public class NotesFragment extends MainBaseFragments {
         adapter.setClickListener(null);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){

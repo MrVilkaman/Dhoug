@@ -56,7 +56,6 @@ public class MainActivity extends SingleFragmentActivity  {
         item2.setTitle("Новая заметка!");
         nItems.add(item2);
         dataHolfer.create(ENTITY.NOTES,nItems);
-
     }
 
     private void createLeftPanel() {

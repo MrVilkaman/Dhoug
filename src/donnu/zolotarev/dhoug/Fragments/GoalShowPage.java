@@ -1,6 +1,5 @@
 package donnu.zolotarev.dhoug.Fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.ListView;
@@ -11,9 +10,11 @@ import butterknife.InjectView;
 import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
 import donnu.zolotarev.dhoug.Interface.IClick;
+import donnu.zolotarev.dhoug.Interface.IDataHolfer;
 import donnu.zolotarev.dhoug.R;
 
 import java.io.Serializable;
@@ -40,10 +41,8 @@ public class GoalShowPage extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_full_goal, inflater, container);
-        listView.setAdapter(noteAdapted);
         updateViews();
         addHeader();
-
       //  popupMenu = setupPopupMenu(period, R.menu.add_periodmenu, periodListener);
         return view;
     }
@@ -60,15 +59,20 @@ public class GoalShowPage extends BaseFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (noteAdapted == null) {
-            ArrayList<NoteItem> items = new ArrayList<NoteItem>();
-            items.add(new NoteItem());
-            items.add(new NoteItem());
-            items.add(new NoteItem());
-            noteAdapted = new NotesAdapter(activity,items);
-        }
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+//        if (noteAdapted == null) {
+            IDataHolfer dataHolfer = getData();
+            //todo переместить
+            ArrayList<NoteItem> nItems = new ArrayList<NoteItem>();
+            for(Object item: dataHolfer.get(ENTITY.NOTES)){
+                NoteItem noteItem = (NoteItem)item;
+                if (noteItem != null && goalItem.getId().equals(noteItem.getGoalId())) {
+                    nItems.add(noteItem);
+                }
+            }
+            noteAdapted = new NotesAdapter(getActivity(),nItems);
+//        }
         noteAdapted.setClickListener(new IClick() {
             @Override
             public void click(Serializable goalItem) {
@@ -76,12 +80,14 @@ public class GoalShowPage extends BaseFragment {
                 showFragment(showPage, true);
             }
         });
+
+        listView.setAdapter(noteAdapted);
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
+    public void onDestroyView() {
         noteAdapted.setClickListener(null);
+        super.onDestroyView();
     }
 
     private void updateViews() {

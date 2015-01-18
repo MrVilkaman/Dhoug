@@ -3,9 +3,12 @@ package donnu.zolotarev.dhoug.DataModels;
 import donnu.zolotarev.dhoug.Enums.GOAL_REPETITION;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.UUID;
 
 public class GoalItem implements Serializable {
+    private UUID id;
     private String title;
     private String description;
 
@@ -13,10 +16,18 @@ public class GoalItem implements Serializable {
     private Date timeEnd;
     private GOAL_REPETITION repetition;
 
+    private ArrayList<UUID> notesID;
+
     public GoalItem() {
+        notesID = new ArrayList<UUID>();
+        id = UUID.randomUUID();
         repetition = GOAL_REPETITION.NO;
         description = title = "";
 //        timeStart = timeEnd = new Date();
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     private boolean isDone = false;
@@ -69,5 +80,15 @@ public class GoalItem implements Serializable {
         this.repetition = repetition;
     }
 
+    public void addNotes(NoteItem noteItem) {
+        notesID.add(noteItem.getId());
+    }
 
+    public void deleteNote(NoteItem noteItem) {
+        notesID.remove(noteItem.getId());
+    }
+
+    public ArrayList<UUID> getNotesID() {
+        return notesID;
+    }
 }
