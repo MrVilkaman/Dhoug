@@ -7,16 +7,19 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.PopupMenu;
+import android.widget.*;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
+import donnu.zolotarev.dhoug.Interface.IDataHolfer;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Convertors;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class AddNotesFragment extends AddBaseFragment {
 
@@ -30,12 +33,14 @@ public class AddNotesFragment extends AddBaseFragment {
     EditText period;
 
     @InjectView(R.id.add_note_to_goal)
-    EditText noteToGoal;
+    AutoCompleteTextView noteToGoal;
 
     private PopupMenu popupMenu;
+    private ArrayAdapter<GoalItem> dropListAdapter;
 
     private NoteItem noteItemTemp;
     private int mode;
+    private UUID dropSubId;
 
 
     @SuppressLint("ValidFragment")
@@ -59,28 +64,86 @@ public class AddNotesFragment extends AddBaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_add_notes, inflater, container);
-        popupMenu = setupPopupMenu(period, R.menu.notes_validate_menu, notes_validate);
+        dropListAdapter =  new ArrayAdapter<GoalItem>(getActivity(),android.R.layout.simple_list_item_1);
         updateViews();
+        popupMenu = setupPopupMenu(period, R.menu.notes_validate_menu, notes_validate);
+        noteToGoal.setAdapter(dropListAdapter);
+        noteToGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mode != SHOW) {
+                    noteToGoal.showDropDown();
+                }
+            }
+        });
+        noteToGoal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                GoalItem item = (GoalItem)parent.getItemAtPosition(position);
+                if (dropSubId.equals(item.getId())) {
+                    noteItemTemp.setGoalId(null);
+                }else{
+                    noteItemTemp.setGoalId(item.getId());
+                }
+            }
+        });
+
         return view;
     }
 
     private void updateViews() {
         Bundle arg = getArguments();
+        IDataHolfer dataHolfer = getData();
+
         noteItemTemp = (NoteItem)arg.get(ITEM);
         mode = getArguments().getInt(MODE);
 
         period.setText(R.string.add_period_never);
         noteToGoal.setText(R.string.note_to_goal_not_attached);
 
+        dropListAdapter.clear();
+        GoalItem goal = new GoalItem();
+        goal.setTitle(getString(R.string.note_to_goal_not_attached));
+        dropSubId = goal.getId();
+        dropListAdapter.add(goal);
+
+        for(Object item: dataHolfer.get(ENTITY.GOALS)){
+            GoalItem goalItem = (GoalItem)item;
+           /* if (noteItem != null && goalItem.getId().equals(noteItem.getGoalId())) {
+                nItems.add(noteItem);
+            }*/
+            dropListAdapter.add(goalItem);
+        }
+        dropListAdapter.notifyDataSetChanged();
+
         if (arg == null || (arg != null && noteItemTemp == null)) {
             noteItemTemp = new NoteItem();
             return;
         }
+        if (noteItemTemp.getGoalId() != null) {
+//            noteToGoal.setText( ((GoalItem)getData().getEntityForId(ENTITY.GOALS,noteItemTemp.getGoalId())).getTitle());
+            String str = null;
+
+            for(Object item: dataHolfer.get(ENTITY.GOALS)){
+                GoalItem goalItem = (GoalItem)item;
+                if (goalItem.getId().equals(noteItemTemp.getGoalId())) {
+                    str =  goalItem.getTitle();
+                    break;
+                }
+            }
+
+            if (str != null) {
+                noteToGoal.setText(str);
+            }
+        }
+
         title.setText(noteItemTemp.getTitle());
         subtitle.setText(noteItemTemp.getDiscription());
         period.setText(Convertors.enumNotesToText(noteItemTemp.getValidate()));
         title.setEnabled(mode != SHOW);
         subtitle.setEnabled(mode != SHOW);
+
+
         // noteToGoal
     }
 

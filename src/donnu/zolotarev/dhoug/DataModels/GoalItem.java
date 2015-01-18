@@ -91,4 +91,9 @@ public class GoalItem implements Serializable {
     public ArrayList<UUID> getNotesID() {
         return notesID;
     }
+
+    @Override
+    public String toString() {
+        return getTitle();
+    }
 }

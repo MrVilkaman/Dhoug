@@ -1,11 +1,12 @@
 package donnu.zolotarev.dhoug;
 
 import android.app.Application;
+import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Interface.IDataHolfer;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.io.Serializable;
+import java.util.*;
 
 public class App extends Application implements IDataHolfer {
 
@@ -26,4 +27,5 @@ public class App extends Application implements IDataHolfer {
     public void create(ENTITY entity, Collection collection) {
         data.put(entity,collection);
     }
+
 }
