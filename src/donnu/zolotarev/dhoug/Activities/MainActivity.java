@@ -66,7 +66,12 @@ public class MainActivity extends SingleFragmentActivity  {
                 if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     drawerLayout.closeDrawers();
                 }else {
-                    drawerLayout.openDrawer(Gravity.LEFT);
+                    FragmentManager fManager = getFragmentManager();
+                    if (fManager.getBackStackEntryCount() != 0){
+                       popBackStack();
+                    }else{
+                        drawerLayout.openDrawer(Gravity.LEFT);
+                    }
                 }
                 return true;
         }
