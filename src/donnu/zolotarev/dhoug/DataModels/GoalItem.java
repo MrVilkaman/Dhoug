@@ -68,4 +68,6 @@ public class GoalItem implements Serializable {
     public void setRepetition(GOAL_REPETITION repetition) {
         this.repetition = repetition;
     }
+
+
 }

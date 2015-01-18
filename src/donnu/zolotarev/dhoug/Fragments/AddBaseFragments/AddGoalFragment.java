@@ -19,6 +19,7 @@ import donnu.zolotarev.dhoug.Fragments.Dialogs.DatePickerFragment;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
+import donnu.zolotarev.dhoug.Utils.Convertors;
 import donnu.zolotarev.dhoug.Utils.Utils;
 
 import java.io.Serializable;
@@ -99,6 +100,7 @@ public class AddGoalFragment extends AddBaseFragment {
         mode = getArguments().getInt(MODE);
         title.setEnabled(mode != SHOW);
         subTitle.setEnabled(mode != SHOW);
+        period.setText(Convertors.enumGoalsToText(goalItemTemp.getRepetition()));
 
     }
 
@@ -183,6 +185,7 @@ public class AddGoalFragment extends AddBaseFragment {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             period.setText(item.getTitle());
+            goalItemTemp.setRepetition(Convertors.menuIdToEnumGoalReplay(item.getItemId()));
             return true;
         }
     };

@@ -11,8 +11,12 @@ import butterknife.InjectView;
 import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
+import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
+import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class GoalShowPage extends BaseFragment {
@@ -65,6 +69,19 @@ public class GoalShowPage extends BaseFragment {
             items.add(new NoteItem());
             noteAdapted = new NotesAdapter(activity,items);
         }
+        noteAdapted.setClickListener(new IClick() {
+            @Override
+            public void click(Serializable goalItem) {
+                AddNotesFragment showPage = AddNotesFragment.open(GoalShowPage.this, (NoteItem) goalItem, AddBaseFragment.SHOW);
+                showFragment(showPage, true);
+            }
+        });
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        noteAdapted.setClickListener(null);
     }
 
     private void updateViews() {

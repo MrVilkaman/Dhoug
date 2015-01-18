@@ -12,9 +12,9 @@ import android.widget.PopupMenu;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
-import donnu.zolotarev.dhoug.Enums.NOTES_VALIDATE;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
 import donnu.zolotarev.dhoug.R;
+import donnu.zolotarev.dhoug.Utils.Convertors;
 
 import java.io.Serializable;
 
@@ -78,7 +78,7 @@ public class AddNotesFragment extends AddBaseFragment {
         }
         title.setText(noteItemTemp.getTitle());
         subtitle.setText(noteItemTemp.getDiscription());
-        enumToText(noteItemTemp.getValidate());
+        period.setText(Convertors.enumNotesToText(noteItemTemp.getValidate()));
         title.setEnabled(mode != SHOW);
         subtitle.setEnabled(mode != SHOW);
         // noteToGoal
@@ -102,47 +102,8 @@ public class AddNotesFragment extends AddBaseFragment {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             period.setText(item.getTitle());
-            noteItemTemp.setValidate(menuIdToEnum(item.getItemId()));
+            noteItemTemp.setValidate(Convertors.menuIdToEnumNotes(item.getItemId()));
             return false;
         }
     };
-
-    private NOTES_VALIDATE menuIdToEnum(int id){
-        NOTES_VALIDATE validate = NOTES_VALIDATE.IN_PERPETUITY;
-        switch (id){
-            case R.id.notes_validate_in_perpetuity:
-                validate = NOTES_VALIDATE.IN_PERPETUITY;
-                break;
-            case R.id.notes_validate_mounth:
-                validate = NOTES_VALIDATE.MOUNTH;
-                break;
-            case R.id.notes_validate_week:
-                validate = NOTES_VALIDATE.WEEK;
-                break;
-            case R.id.notes_validate_year:
-                validate = NOTES_VALIDATE.YEAR;
-                break;
-        }
-        return validate;
-    }
-
-    private void enumToText(NOTES_VALIDATE validate){
-        int res = 0;
-        switch (validate){
-            case IN_PERPETUITY:
-                res = R.string.notes_validate_in_perpetuity;
-                break;
-            case MOUNTH:
-                res = R.string.notes_validate_mounth;
-                break;
-            case WEEK:
-                res = R.string.notes_validate_week;
-                break;
-            case YEAR:
-                res = R.string.notes_validate_year;
-                break;
-        }
-        period.setText(res);
-    }
-
 }
