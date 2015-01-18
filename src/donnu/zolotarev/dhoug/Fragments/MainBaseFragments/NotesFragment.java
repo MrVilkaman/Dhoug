@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
@@ -23,12 +24,9 @@ public class NotesFragment extends MainBaseFragments {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (baseAdapted == null) {
-            ArrayList<NoteItem> items = new ArrayList<NoteItem>();
-            NoteItem item = new NoteItem();
             //todo убрать
-            item.setTitle("Новая заметка!");
-            items.add(item);
-            baseAdapted = new NotesAdapter(activity,items);
+
+            baseAdapted = new NotesAdapter(activity,(ArrayList)getData().get(ENTITY.NOTES));
             adapter = (NotesAdapter)baseAdapted;
         }
         adapter.setClickListener(new IClick() {

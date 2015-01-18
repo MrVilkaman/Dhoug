@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
+import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.GoalShowPage;
 import donnu.zolotarev.dhoug.Interface.IClick;
@@ -25,14 +26,9 @@ public class GoalsFragment extends MainBaseFragments {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (baseAdapted == null) {
-            ArrayList<GoalItem> items = new ArrayList<GoalItem>();
             // todo remove test data
-            GoalItem item = new GoalItem();
-            item.setTitle("Курлык мля!");
-            item.setDescription("Лети к цели!");
-            items.add(item);
 
-            baseAdapted = new GoalsAdapter(activity,items);
+            baseAdapted = new GoalsAdapter(activity,(ArrayList)getData().get(ENTITY.GOALS));
             adapter = (GoalsAdapter)baseAdapted;
         }
         adapter.setClickListener(new IClick() {

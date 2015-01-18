@@ -7,11 +7,17 @@ import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.MenuItem;
+import donnu.zolotarev.dhoug.DataModels.GoalItem;
+import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
+import donnu.zolotarev.dhoug.Interface.IDataHolfer;
 import donnu.zolotarev.dhoug.Interface.IOpenMenu;
 import donnu.zolotarev.dhoug.R;
+
+import java.util.ArrayList;
 
 public class MainActivity extends SingleFragmentActivity  {
 
@@ -29,6 +35,28 @@ public class MainActivity extends SingleFragmentActivity  {
         super.onCreate(savedInstanceState);
         setupTabs();
         createLeftPanel();
+
+        loadData();
+    }
+
+    private void loadData() {
+        //todo заменить
+        IDataHolfer dataHolfer = getData();
+
+        ArrayList<GoalItem> items = new ArrayList<GoalItem>();
+        GoalItem item = new GoalItem();
+        item.setTitle("Курлык мля!");
+        item.setDescription("Лети к цели!");
+        items.add(item);
+
+        dataHolfer.create(ENTITY.GOALS,items);
+
+        ArrayList<NoteItem> nItems = new ArrayList<NoteItem>();
+        NoteItem item2 = new NoteItem();
+        item2.setTitle("Новая заметка!");
+        nItems.add(item2);
+        dataHolfer.create(ENTITY.NOTES,nItems);
+
     }
 
     private void createLeftPanel() {
@@ -78,7 +106,6 @@ public class MainActivity extends SingleFragmentActivity  {
         return super.onMenuItemSelected(featureId,item);
     }
 
-
     private void setupTabs() {
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -96,5 +123,9 @@ public class MainActivity extends SingleFragmentActivity  {
         for(int i = 0, max = fManager.getBackStackEntryCount(); i < max; i++){
             fManager.popBackStack();
         }
+    }
+
+    public IDataHolfer getData(){
+        return (IDataHolfer)getApplication();
     }
 }

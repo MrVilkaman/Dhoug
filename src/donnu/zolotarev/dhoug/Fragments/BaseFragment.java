@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.Activities.SingleFragmentActivity;
+import donnu.zolotarev.dhoug.Interface.IDataHolfer;
 
 public class BaseFragment extends Fragment {
 
@@ -120,4 +121,7 @@ public class BaseFragment extends Fragment {
         }
     }
 
+    protected IDataHolfer getData(){
+        return (IDataHolfer)getActivity().getApplication();
+    }
 }
