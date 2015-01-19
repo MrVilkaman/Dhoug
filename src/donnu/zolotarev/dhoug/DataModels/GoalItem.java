@@ -1,36 +1,40 @@
 package donnu.zolotarev.dhoug.DataModels;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
 import donnu.zolotarev.dhoug.Enums.GOAL_REPETITION;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.UUID;
 
-public class GoalItem implements Serializable {
-    private UUID id;
+@Table(name = "Goals")
+public class GoalItem extends Model implements Serializable {
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
-
+    @Column(name = "timeStart")
     private Date timeStart;
+    @Column(name = "timeEnd")
     private Date timeEnd;
+    @Column(name = "repetition")
     private GOAL_REPETITION repetition;
+    @Column(name = "isDone")
+    private boolean isDone = false;
 
-    private ArrayList<UUID> notesID;
+   // private ArrayList<UUID> notesID;
 
     public GoalItem() {
-        notesID = new ArrayList<UUID>();
-        id = UUID.randomUUID();
+        super();
+     //   notesID = new ArrayList<UUID>();
         repetition = GOAL_REPETITION.NO;
         description = title = "";
-//        timeStart = timeEnd = new Date();
+        timeStart = timeEnd = new Date();
     }
 
-    public UUID getId() {
-        return id;
-    }
 
-    private boolean isDone = false;
+
 
     public boolean isDone() {
         return isDone;
@@ -79,7 +83,7 @@ public class GoalItem implements Serializable {
     public void setRepetition(GOAL_REPETITION repetition) {
         this.repetition = repetition;
     }
-
+/*
     public void addNotes(NoteItem noteItem) {
         notesID.add(noteItem.getId());
     }
@@ -90,7 +94,7 @@ public class GoalItem implements Serializable {
 
     public ArrayList<UUID> getNotesID() {
         return notesID;
-    }
+    }*/
 
     @Override
     public String toString() {

@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import com.activeandroid.query.Select;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
-import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.GoalShowPage;
 import donnu.zolotarev.dhoug.Interface.IClick;
@@ -28,7 +28,10 @@ public class GoalsFragment extends MainBaseFragments {
         if (baseAdapted == null) {
             // todo remove test data
 
-            baseAdapted = new GoalsAdapter(activity,(ArrayList)getData().get(ENTITY.GOALS));
+            Select select = new Select();
+            ArrayList<GoalItem> people = (ArrayList)select.all().from(GoalItem.class).execute();
+            baseAdapted = new GoalsAdapter(activity,people);
+         //   baseAdapted = new GoalsAdapter(activity,(ArrayList)getData().get(ENTITY.GOALS));
             adapter = (GoalsAdapter)baseAdapted;
         }
         adapter.setClickListener(new IClick() {
@@ -69,11 +72,14 @@ public class GoalsFragment extends MainBaseFragments {
         switch (requestCode) {
             case AddGoalFragment.ADD_NEW:
                 GoalItem item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
-                adapter.add(item);
+                item.save();
+               adapter.notifyDataSetChanged();
                 break;
             case AddGoalFragment.CHANGE:
                 item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
-                adapter.change(item);
+                item.save();
+//                adapter.change(item);
+                adapter.notifyDataSetChanged();
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);

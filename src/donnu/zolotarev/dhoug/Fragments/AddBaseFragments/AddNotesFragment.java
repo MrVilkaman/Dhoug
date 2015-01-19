@@ -19,7 +19,6 @@ import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Convertors;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 public class AddNotesFragment extends AddBaseFragment {
 
@@ -40,7 +39,7 @@ public class AddNotesFragment extends AddBaseFragment {
 
     private NoteItem noteItemTemp;
     private int mode;
-    private UUID dropSubId;
+//    private UUID dropSubId;
 
 
     @SuppressLint("ValidFragment")
@@ -80,11 +79,12 @@ public class AddNotesFragment extends AddBaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 GoalItem item = (GoalItem)parent.getItemAtPosition(position);
-                if (dropSubId.equals(item.getId())) {
+              /*  if (dropSubId.equals(item.getId())) {
                     noteItemTemp.setGoalId(null);
                 }else{
-                    noteItemTemp.setGoalId(item.getId());
-                }
+
+                    //todo   noteItemTemp.setGoalId(item.getId());
+                }*/
             }
         });
 
@@ -104,7 +104,7 @@ public class AddNotesFragment extends AddBaseFragment {
         dropListAdapter.clear();
         GoalItem goal = new GoalItem();
         goal.setTitle(getString(R.string.note_to_goal_not_attached));
-        dropSubId = goal.getId();
+        //todo dropSubId = goal.getId();
         dropListAdapter.add(goal);
 
         for(Object item: dataHolfer.get(ENTITY.GOALS)){
