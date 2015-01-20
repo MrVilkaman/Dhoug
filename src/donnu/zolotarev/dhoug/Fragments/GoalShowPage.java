@@ -10,11 +10,9 @@ import butterknife.InjectView;
 import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
-import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
 import donnu.zolotarev.dhoug.Interface.IClick;
-import donnu.zolotarev.dhoug.Interface.IDataHolfer;
 import donnu.zolotarev.dhoug.R;
 
 import java.io.Serializable;
@@ -62,16 +60,15 @@ public class GoalShowPage extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 //        if (noteAdapted == null) {
-            IDataHolfer dataHolfer = getData();
             //todo переместить
             ArrayList<NoteItem> nItems = new ArrayList<NoteItem>();
-            for(Object item: dataHolfer.get(ENTITY.NOTES)){
+           /* for(Object item: dataHolfer.get(ENTITY.NOTES)){
                 NoteItem noteItem = (NoteItem)item;
                 if (noteItem != null && goalItem.getId().equals(noteItem.getGoalId())) {
                     nItems.add(noteItem);
                 }
-            }
-            noteAdapted = new NotesAdapter(getActivity(),nItems);
+            }*/
+            noteAdapted = new NotesAdapter(getActivity(), NoteItem.getNotesForGoals(goalItem.getId()));
 //        }
         noteAdapted.setClickListener(new IClick() {
             @Override

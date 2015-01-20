@@ -21,5 +21,9 @@
         <meta-data
                 android:name="DB_DHOUG"
                 android:value="dhoug.db" />
+        <meta-data
+                android:name="AA_DB_VERSION"
+                android:value="1" />
+
     </application>
 </manifest> 

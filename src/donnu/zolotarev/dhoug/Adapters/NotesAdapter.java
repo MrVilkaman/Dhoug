@@ -44,7 +44,7 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return items.get(i).getId();
     }
 
     public NoteItem getSomeItem(int i){

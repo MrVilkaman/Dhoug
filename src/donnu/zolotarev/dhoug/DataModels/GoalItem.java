@@ -3,9 +3,11 @@ package donnu.zolotarev.dhoug.DataModels;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 import donnu.zolotarev.dhoug.Enums.GOAL_REPETITION;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Table(name = "Goals")
@@ -32,9 +34,6 @@ public class GoalItem extends Model implements Serializable {
         description = title = "";
         timeStart = timeEnd = new Date();
     }
-
-
-
 
     public boolean isDone() {
         return isDone;
@@ -99,5 +98,21 @@ public class GoalItem extends Model implements Serializable {
     @Override
     public String toString() {
         return getTitle();
+    }
+
+    public static ArrayList<GoalItem> getAll() {
+        return (ArrayList)(new Select().all().from(GoalItem.class).execute());
+    }
+
+    public static void delete(long id){
+        Model.load(GoalItem.class, id).delete();
+    }
+
+    public static String getTitleById(long goalId) {
+        if (goalId == -1) {
+            return "";
+        }
+
+        return Model.load(GoalItem.class, goalId).getTitle();
     }
 }

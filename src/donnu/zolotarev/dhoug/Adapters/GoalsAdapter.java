@@ -50,7 +50,10 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
 
     @Override
     public long getItemId(int i) {
-        return i < devider?i:i-1;
+        if (items.size() == i) {
+            return -1;
+        }
+        return items.get(i).getId();
     }
 
     public GoalItem getSomeItem(int i){
@@ -76,6 +79,7 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                     goalItem.setDone(b);
+                    goalItem.save();
                     sort();
                 }
             });

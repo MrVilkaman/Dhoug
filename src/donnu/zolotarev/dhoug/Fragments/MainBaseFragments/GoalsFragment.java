@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import com.activeandroid.query.Select;
+import com.activeandroid.Model;
 import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
@@ -15,7 +15,6 @@ import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class GoalsFragment extends MainBaseFragments {
 
@@ -28,9 +27,7 @@ public class GoalsFragment extends MainBaseFragments {
         if (baseAdapted == null) {
             // todo remove test data
 
-            Select select = new Select();
-            ArrayList<GoalItem> people = (ArrayList)select.all().from(GoalItem.class).execute();
-            baseAdapted = new GoalsAdapter(activity,people);
+            baseAdapted = new GoalsAdapter(activity,GoalItem.getAll());
          //   baseAdapted = new GoalsAdapter(activity,(ArrayList)getData().get(ENTITY.GOALS));
             adapter = (GoalsAdapter)baseAdapted;
         }
@@ -52,7 +49,6 @@ public class GoalsFragment extends MainBaseFragments {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     @Override
@@ -73,12 +69,13 @@ public class GoalsFragment extends MainBaseFragments {
             case AddGoalFragment.ADD_NEW:
                 GoalItem item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
-               adapter.notifyDataSetChanged();
+                adapter.add(item);
+                adapter.notifyDataSetChanged();
                 break;
             case AddGoalFragment.CHANGE:
                 item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
-//                adapter.change(item);
+                adapter.change(item);
                 adapter.notifyDataSetChanged();
                 break;
         }
@@ -90,8 +87,11 @@ public class GoalsFragment extends MainBaseFragments {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()){
             case CM_EDIT:
-                AddGoalFragment goalsFragment = AddGoalFragment.open(this, adapter.getSomeItem((int) menuInfo.id), AddGoalFragment.CHANGE);
+                AddGoalFragment goalsFragment = AddGoalFragment.open(this, Model.load(GoalItem.class, menuInfo.id), AddGoalFragment.CHANGE);
                 showFragment(goalsFragment, true);
+                return true;
+            case CM_DELETE:
+                GoalItem.delete(menuInfo.id);
                 return true;
         }
         return false;

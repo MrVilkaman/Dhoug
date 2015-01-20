@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+import com.activeandroid.Model;
 import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
-import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
@@ -14,7 +14,6 @@ import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class NotesFragment extends MainBaseFragments {
 
@@ -26,7 +25,7 @@ public class NotesFragment extends MainBaseFragments {
         if (baseAdapted == null) {
             //todo убрать
 
-            baseAdapted = new NotesAdapter(activity,(ArrayList)getData().get(ENTITY.NOTES));
+            baseAdapted = new NotesAdapter(activity,NoteItem.getAll());
             adapter = (NotesAdapter)baseAdapted;
         }
         adapter.setClickListener(new IClick() {
@@ -62,10 +61,12 @@ public class NotesFragment extends MainBaseFragments {
         switch (requestCode) {
             case AddGoalFragment.ADD_NEW:
                 NoteItem item = (NoteItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
+                item.save();
                 adapter.add(item);
-                break;
+            break;
             case AddGoalFragment.CHANGE:
                 item = (NoteItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
+                item.save();
                 adapter.change(item);
                 break;
         }
@@ -77,8 +78,11 @@ public class NotesFragment extends MainBaseFragments {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()){
             case CM_EDIT:
-                AddNotesFragment notesFragment = AddNotesFragment.open(this,adapter.getSomeItem((int) menuInfo.id),AddNotesFragment.CHANGE);
+                AddNotesFragment notesFragment = AddNotesFragment.open(this, Model.load(NoteItem.class, menuInfo.id),AddNotesFragment.CHANGE);
                 showFragment(notesFragment, true);
+                return true;
+            case CM_DELETE:
+                NoteItem.delete(menuInfo.id);
                 return true;
         }
         return false;

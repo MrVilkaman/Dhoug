@@ -2,11 +2,13 @@ package donnu.zolotarev.dhoug.Fragments.MainBaseFragments;
 
 import android.os.Bundle;
 import android.view.*;
-import android.widget.*;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
-import donnu.zolotarev.dhoug.Adapters.IAdapter;
 import donnu.zolotarev.dhoug.Fragments.BaseFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
@@ -88,16 +90,7 @@ abstract class MainBaseFragments extends BaseFragment {
 //        super.onCreateContextMenu(menu, v, menuInfo);
     }*/
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-       switch (item.getItemId()){
-          case CM_DELETE:
-               ((IAdapter)baseAdapted).delete(menuInfo.id);
-               return true;
-       }
-        return false;
-    }
+
 
     @OnItemClick(R.id.list) void onItemClick(int position) {
         toast("Clicked position " + position + "!");

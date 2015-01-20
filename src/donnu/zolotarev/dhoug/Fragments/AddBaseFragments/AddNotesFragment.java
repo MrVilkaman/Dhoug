@@ -12,9 +12,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
-import donnu.zolotarev.dhoug.Enums.ENTITY;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
-import donnu.zolotarev.dhoug.Interface.IDataHolfer;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Convertors;
 
@@ -79,12 +77,7 @@ public class AddNotesFragment extends AddBaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 GoalItem item = (GoalItem)parent.getItemAtPosition(position);
-              /*  if (dropSubId.equals(item.getId())) {
-                    noteItemTemp.setGoalId(null);
-                }else{
-
-                    //todo   noteItemTemp.setGoalId(item.getId());
-                }*/
+                    noteItemTemp.setGoalId(item.getId());
             }
         });
 
@@ -93,7 +86,6 @@ public class AddNotesFragment extends AddBaseFragment {
 
     private void updateViews() {
         Bundle arg = getArguments();
-        IDataHolfer dataHolfer = getData();
 
         noteItemTemp = (NoteItem)arg.get(ITEM);
         mode = getArguments().getInt(MODE);
@@ -106,35 +98,17 @@ public class AddNotesFragment extends AddBaseFragment {
         goal.setTitle(getString(R.string.note_to_goal_not_attached));
         //todo dropSubId = goal.getId();
         dropListAdapter.add(goal);
-
-        for(Object item: dataHolfer.get(ENTITY.GOALS)){
-            GoalItem goalItem = (GoalItem)item;
-           /* if (noteItem != null && goalItem.getId().equals(noteItem.getGoalId())) {
-                nItems.add(noteItem);
-            }*/
-            dropListAdapter.add(goalItem);
-        }
+        dropListAdapter.addAll( GoalItem.getAll());
         dropListAdapter.notifyDataSetChanged();
 
         if (arg == null || (arg != null && noteItemTemp == null)) {
             noteItemTemp = new NoteItem();
             return;
         }
-        if (noteItemTemp.getGoalId() != null) {
-//            noteToGoal.setText( ((GoalItem)getData().getEntityForId(ENTITY.GOALS,noteItemTemp.getGoalId())).getTitle());
-            String str = null;
-
-            for(Object item: dataHolfer.get(ENTITY.GOALS)){
-                GoalItem goalItem = (GoalItem)item;
-                if (goalItem.getId().equals(noteItemTemp.getGoalId())) {
-                    str =  goalItem.getTitle();
-                    break;
-                }
-            }
-
-            if (str != null) {
-                noteToGoal.setText(str);
-            }
+        if (noteItemTemp.getGoalId() != -1) {
+            noteToGoal.setText(GoalItem.getTitleById(noteItemTemp.getGoalId()));
+        } else{
+            noteToGoal.setText(R.string.note_to_goal_not_attached);
         }
 
         title.setText(noteItemTemp.getTitle());

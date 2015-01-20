@@ -1,26 +1,28 @@
 package donnu.zolotarev.dhoug.DataModels;
 
+import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
+import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 import donnu.zolotarev.dhoug.Enums.NOTES_VALIDATE;
 
 import java.io.Serializable;
-import java.util.UUID;
+import java.util.ArrayList;
 
-public class NoteItem implements Serializable {
-
-
-    private UUID id;
+@Table(name = "Notes")
+public class NoteItem  extends Model implements Serializable {
+    @Column(name = "title")
     private String title;
+    @Column(name = "discription")
     private String discription;
+    @Column(name = "validate")
     private NOTES_VALIDATE validate;
-    private UUID goalId;
+    @Column(name = "goalId")
+    private long goalId;
 
     public NoteItem() {
         validate = NOTES_VALIDATE.IN_PERPETUITY;
-        id = UUID.randomUUID();
-    }
-
-    public UUID getId() {
-        return id;
+        goalId = -1;
     }
 
     public String getTitle() {
@@ -47,11 +49,23 @@ public class NoteItem implements Serializable {
         this.validate = validate;
     }
 
-    public UUID getGoalId() {
+    public long getGoalId() {
         return goalId;
     }
 
-    public void setGoalId(UUID goalId) {
+    public void setGoalId(long goalId) {
         this.goalId = goalId;
+    }
+
+    public static ArrayList<NoteItem> getAll() {
+        return (ArrayList)(new Select().all().from(NoteItem.class).execute());
+    }
+
+    public static ArrayList<NoteItem> getNotesForGoals(long goalsId) {
+        return (ArrayList)(new Select().all().from(NoteItem.class).where("goalId = ?",goalsId).execute());
+    }
+
+    public static void delete(long id){
+        Model.load(NoteItem.class, id).delete();
     }
 }
