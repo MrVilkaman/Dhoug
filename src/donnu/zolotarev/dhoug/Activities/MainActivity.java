@@ -3,10 +3,13 @@ package donnu.zolotarev.dhoug.Activities;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
@@ -58,6 +61,19 @@ public class MainActivity extends SingleFragmentActivity  {
         };
     }
 
+    public void hideKeyboard(){
+        try {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            View view = getCurrentFocus();
+            if (view != null){
+                view.clearFocus();
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        } catch (Exception e){
+
+        }
+    }
+
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
@@ -67,6 +83,7 @@ public class MainActivity extends SingleFragmentActivity  {
                 if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     drawerLayout.closeDrawers();
                 }else {
+                    hideKeyboard();
                     FragmentManager fManager = getFragmentManager();
                     if (fManager.getBackStackEntryCount() != 0){
                        popBackStack();

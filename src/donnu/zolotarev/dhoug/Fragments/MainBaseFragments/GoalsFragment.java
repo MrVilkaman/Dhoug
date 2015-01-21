@@ -82,6 +82,7 @@ public class GoalsFragment extends MainBaseFragments {
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        hideKeyboard();
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch (item.getItemId()){
             case CM_EDIT:

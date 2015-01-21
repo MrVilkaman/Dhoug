@@ -33,6 +33,7 @@ public abstract class AddBaseFragment extends BaseFragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        hideKeyboard();
         switch (item.getItemId()){
             case R.id.menu_accept:
                 sendResult(ADD_NEW);
