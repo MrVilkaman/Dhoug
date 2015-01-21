@@ -19,7 +19,7 @@ public class GoalsDBAdapter extends QuickAdapter {
     private final LayoutInflater layoutInflater;
     private IClick clickListener;
 
-    private int devider = 0;//Integer.MAX_VALUE;
+    private int devider = -1;//Integer.MAX_VALUE;
 
     public GoalsDBAdapter(Context context, DataSource dataSource) {
         super(context, dataSource);
@@ -36,7 +36,7 @@ public class GoalsDBAdapter extends QuickAdapter {
 
     @Override
     public int getCount() {
-        return super.getCount()+1;
+        return super.getCount()/*+1*/;
     }
 
     @Override
@@ -60,17 +60,17 @@ public class GoalsDBAdapter extends QuickAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
-        if (position == devider) {
+       /* if (position == devider) {
             return inflateTextView(parent);
-        }
+        }*/
         if (convertView != null) {
             ViewHolder holder = (ViewHolder)convertView.getTag();
             if (holder == null) {
                 convertView = null;
             }
         }
-        int index = position < devider?position:position-1;
-        view = super.getView(index, convertView, parent);
+//        int index = position < devider?position:position-1;
+        view = super.getView(position, convertView, parent);
         return view;
     }
 
