@@ -36,8 +36,10 @@ public abstract class AddBaseFragment extends BaseFragment {
         hideKeyboard();
         switch (item.getItemId()){
             case R.id.menu_accept:
-                sendResult(ADD_NEW);
-                back();
+                if (isDataValid()) {
+                    sendResult(ADD_NEW);
+                    back();
+                }
                 return true;
             case R.id.menu_cancel:
                 back();
@@ -45,6 +47,8 @@ public abstract class AddBaseFragment extends BaseFragment {
         }
         return false;
     }
+
+    protected abstract boolean isDataValid();
 
     protected PopupMenu setupPopupMenu(final TextView view, int layoutID, PopupMenu.OnMenuItemClickListener listener) {
         PopupMenu popupMenu = new PopupMenu(getActivity(), view);

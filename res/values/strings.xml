@@ -2,6 +2,9 @@
 <resources>
     <string name = "app_name">Dhoug</string>
 
+    <!--Общие-->
+    <string name="default_alert_title">Внимание!</string>
+
     <!--Левое меню-->
     <string name = "left_menu_goals">Цели</string>
     <string name = "left_menu_nots">Заметки</string>
@@ -27,6 +30,10 @@
     <string name="add_goal_begin">Начало</string>
     <string name="add_goal_end">Окончание</string>
     <string name="add_goal_repeat">Повторять</string>
+
+    <!--Цели диалоги-->
+    <string name="error_text_empty_title">Заголовок не может быть пустым!</string>
+    <string name="error_text_data_not_valid">Выбрана не верная дата!</string>
 
     <!--Всплывающее меню периода-->
     <string name="period_day">День</string>

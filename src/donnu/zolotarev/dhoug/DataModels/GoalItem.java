@@ -32,7 +32,7 @@ public class GoalItem extends Model implements Serializable {
      //   notesID = new ArrayList<UUID>();
         repetition = GOAL_REPETITION.NO;
         description = title = "";
-        timeStart = timeEnd = new Date();
+//        timeStart = timeEnd = new Date();
     }
 
     public boolean isDone() {

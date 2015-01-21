@@ -135,6 +135,16 @@ public class AddNotesFragment extends AddBaseFragment {
     }
 
     @Override
+    protected boolean isDataValid() {
+        if (getText(title).isEmpty()) {
+            showAlert(R.string.error_text_empty_title,null);
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
     protected Serializable getItem() {
         noteItemTemp.setTitle(getText(title));
         noteItemTemp.setDiscription(getText(subtitle));

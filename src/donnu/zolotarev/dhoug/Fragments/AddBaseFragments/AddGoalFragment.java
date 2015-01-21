@@ -175,6 +175,29 @@ public class AddGoalFragment extends AddBaseFragment {
     }
 
     @Override
+    protected boolean isDataValid() {
+        if (getText(title).isEmpty()) {
+            showAlert(R.string.error_text_empty_title,null);
+            return false;
+        }
+
+            boolean wrongData = goalItemTemp.getTimeEnd() == null ^ goalItemTemp.getTimeStart() == null;
+            if (wrongData) {
+                showAlert(R.string.error_text_data_not_valid,null);
+                return false;
+            }
+        if (goalItemTemp.getTimeEnd() != null && goalItemTemp.getTimeStart() != null) {
+            boolean startMoreEnd = goalItemTemp.getTimeEnd().getTime()<goalItemTemp.getTimeStart().getTime();
+            boolean startDateLessNow = goalItemTemp.getTimeStart().getTime() < new Date(new Date().getTime()-10*60*1000).getTime();
+            if (startMoreEnd || startDateLessNow) {
+                showAlert(R.string.error_text_data_not_valid,null);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     protected Serializable getItem() {
         goalItemTemp.setTitle(getText(title));
         goalItemTemp.setDescription(getText(subTitle));

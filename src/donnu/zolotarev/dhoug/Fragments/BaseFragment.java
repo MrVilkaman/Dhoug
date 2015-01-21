@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.Activities.SingleFragmentActivity;
+import donnu.zolotarev.dhoug.R;
 
 public class BaseFragment extends Fragment {
 
@@ -64,15 +65,15 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    public static void showAlert(Context ctx, int messageId, String title){
-        showAlert(ctx, ctx.getString(messageId), title);
+    public void showAlert(int messageId, String title){
+        showAlert(getString(messageId), title);
     }
 
-    public static void showAlert(Context ctx, String message, String title) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+    public void showAlert(String message, String title) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         if(title == null){
             builder.setIcon(android.R.drawable.ic_dialog_alert);
-            builder.setTitle("Alert");
+            builder.setTitle(R.string.default_alert_title);
         } else {
             builder.setTitle(title);
         }
