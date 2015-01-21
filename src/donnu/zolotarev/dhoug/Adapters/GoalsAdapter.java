@@ -50,10 +50,11 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
 
     @Override
     public long getItemId(int i) {
-        if (items.size() == i) {
-            return -1;
+        int index = i < devider?i:i-1;
+        if (-1 < index && index < items.size()) {
+            return items.get(index).getId();
         }
-        return items.get(i).getId();
+        return 0;
     }
 
     public GoalItem getSomeItem(int i){
@@ -150,8 +151,11 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
 
     @Override
     public void delete(long id) {
-        items.remove((int)id);
-        sort();
+        int index = (int)(id < devider?id:id-1);
+        if (-1 < index && index < items.size()) {
+            items.remove(index);
+            sort();
+        }
     }
 
     @Override

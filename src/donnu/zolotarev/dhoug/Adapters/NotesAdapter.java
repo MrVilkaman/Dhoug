@@ -87,8 +87,8 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
 
     @Override
     public void delete(long id) {
-        items.remove((int)id);
-        notifyDataSetChanged();
+            items.remove((int)id);
+            notifyDataSetChanged();
     }
 
     @Override

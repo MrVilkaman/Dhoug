@@ -105,14 +105,21 @@ public class GoalItem extends Model implements Serializable {
     }
 
     public static void delete(long id){
-        Model.load(GoalItem.class, id).delete();
+        GoalItem item = Model.load(GoalItem.class, id);
+        if (item != null) {
+            item.delete();
+        }
     }
 
     public static String getTitleById(long goalId) {
         if (goalId == -1) {
             return "";
         }
-
-        return Model.load(GoalItem.class, goalId).getTitle();
+        GoalItem item = Model.load(GoalItem.class, goalId);
+        if (item !=null) {
+            return item.getTitle();
+        }else {
+            return "";
+        }
     }
 }

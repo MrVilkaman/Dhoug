@@ -66,6 +66,9 @@ public class NoteItem  extends Model implements Serializable {
     }
 
     public static void delete(long id){
-        Model.load(NoteItem.class, id).delete();
+        NoteItem item = Model.load(NoteItem.class, id);
+        if (item != null) {
+            item.delete();
+        }
     }
 }

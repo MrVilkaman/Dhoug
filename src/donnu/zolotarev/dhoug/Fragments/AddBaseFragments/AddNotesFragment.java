@@ -106,7 +106,13 @@ public class AddNotesFragment extends AddBaseFragment {
             return;
         }
         if (noteItemTemp.getGoalId() != -1) {
-            noteToGoal.setText(GoalItem.getTitleById(noteItemTemp.getGoalId()));
+            String s = GoalItem.getTitleById(noteItemTemp.getGoalId());
+            if (!s.isEmpty()) {
+                noteToGoal.setText(s);
+            }else {
+                noteToGoal.setText(R.string.note_to_goal_not_attached);
+                noteItemTemp.setGoalId(-1);
+            }
         } else{
             noteToGoal.setText(R.string.note_to_goal_not_attached);
         }
