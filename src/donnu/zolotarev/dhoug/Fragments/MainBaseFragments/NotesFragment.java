@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import com.activeandroid.Model;
-import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
+import donnu.zolotarev.dhoug.Adapters.NotesDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
@@ -17,16 +17,15 @@ import java.io.Serializable;
 
 public class NotesFragment extends MainBaseFragments {
 
-    private NotesAdapter adapter;
+    private NotesDBAdapter adapter;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         if (baseAdapted == null) {
             //todo убрать
-
-            baseAdapted = new NotesAdapter(activity,NoteItem.getAll());
-            adapter = (NotesAdapter)baseAdapted;
+            baseAdapted = new NotesDBAdapter(activity);//new NotesAdapter(activity,NoteItem.getAll());
+            adapter = (NotesDBAdapter)baseAdapted;
         }
         adapter.setClickListener(new IClick() {
             @Override
@@ -62,12 +61,12 @@ public class NotesFragment extends MainBaseFragments {
             case AddGoalFragment.ADD_NEW:
                 NoteItem item = (NoteItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
-                adapter.add(item);
+                adapter.doQuery();
             break;
             case AddGoalFragment.CHANGE:
                 item = (NoteItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
-                adapter.change(item);
+                adapter.doQuery();
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -83,6 +82,8 @@ public class NotesFragment extends MainBaseFragments {
                 return true;
             case CM_DELETE:
                 NoteItem.delete(menuInfo.id);
+                adapter.notifyDataSetChanged();
+                adapter.doQuery();
                 return true;
         }
         return false;

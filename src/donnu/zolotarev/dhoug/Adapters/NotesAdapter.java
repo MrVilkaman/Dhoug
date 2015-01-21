@@ -95,7 +95,7 @@ public class NotesAdapter extends BaseAdapter implements IAdapter {
     public void change(Object item) {
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         private final CheckBox checkBox;
         private final TextView title;
         private final TextView subTitle;

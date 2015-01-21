@@ -163,7 +163,7 @@ public class GoalsAdapter extends BaseAdapter implements IAdapter {
 
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         private final CheckBox checkBox;
         private final TextView title;
         private final TextView subTitle;
