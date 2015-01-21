@@ -8,9 +8,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import butterknife.ButterKnife;
-import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
-import com.activeandroid.query.Select;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
@@ -19,20 +17,8 @@ public class NotesDBAdapter extends QuickAdapter {
     private final LayoutInflater layoutInflater;
     private IClick clickListener;
 
-    public NotesDBAdapter(Context context) {
-        super(context, new DataSource() {
-            @Override
-            public Cursor getRowIds() {
-                String query = new Select("Id").from(NoteItem.class).toSql();
-                return ActiveAndroid.getDatabase().rawQuery(query, null);
-            }
-
-            @Override
-            public Cursor getRowById(long rowId) {
-                String query = new Select().all().from(NoteItem.class).where("Id = ?").toSql();
-                return ActiveAndroid.getDatabase().rawQuery(query, new String[]{Long.toString(rowId)});
-            }
-        });
+    public NotesDBAdapter(Context context, DataSource data) {
+        super(context, data);
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

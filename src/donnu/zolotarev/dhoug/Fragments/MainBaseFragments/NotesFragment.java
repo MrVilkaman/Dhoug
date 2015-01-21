@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import com.activeandroid.Model;
+import donnu.zolotarev.dhoug.Adapters.DataSources.AllNotesData;
 import donnu.zolotarev.dhoug.Adapters.NotesDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
@@ -24,7 +25,7 @@ public class NotesFragment extends MainBaseFragments {
         super.onAttach(activity);
         if (baseAdapted == null) {
             //todo убрать
-            baseAdapted = new NotesDBAdapter(activity);//new NotesAdapter(activity,NoteItem.getAll());
+            baseAdapted = new NotesDBAdapter(activity, new AllNotesData());//new NotesAdapter(activity,NoteItem.getAll());
             adapter = (NotesDBAdapter)baseAdapted;
         }
         adapter.setClickListener(new IClick() {

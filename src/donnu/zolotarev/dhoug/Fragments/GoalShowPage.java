@@ -7,7 +7,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import donnu.zolotarev.dhoug.Adapters.NotesAdapter;
+import donnu.zolotarev.dhoug.Adapters.DataSources.NotesForGoalData;
+import donnu.zolotarev.dhoug.Adapters.NotesDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
@@ -16,7 +17,6 @@ import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class GoalShowPage extends BaseFragment {
 
@@ -24,7 +24,7 @@ public class GoalShowPage extends BaseFragment {
 
     @InjectView(R.id.list)
     ListView listView;
-    private NotesAdapter noteAdapted;
+    private NotesDBAdapter noteAdapted;
     private GoalItem goalItem;
 
 
@@ -59,17 +59,8 @@ public class GoalShowPage extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        if (noteAdapted == null) {
-            //todo переместить
-            ArrayList<NoteItem> nItems = new ArrayList<NoteItem>();
-           /* for(Object item: dataHolfer.get(ENTITY.NOTES)){
-                NoteItem noteItem = (NoteItem)item;
-                if (noteItem != null && goalItem.getId().equals(noteItem.getGoalId())) {
-                    nItems.add(noteItem);
-                }
-            }*/
-            noteAdapted = new NotesAdapter(getActivity(), NoteItem.getNotesForGoals(goalItem.getId()));
-//        }
+
+            noteAdapted = new NotesDBAdapter(getActivity(), new NotesForGoalData(goalItem.getId()));
         noteAdapted.setClickListener(new IClick() {
             @Override
             public void click(Serializable goalItem) {
