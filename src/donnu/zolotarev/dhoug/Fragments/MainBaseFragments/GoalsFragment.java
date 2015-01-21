@@ -7,7 +7,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import com.activeandroid.Model;
-import donnu.zolotarev.dhoug.Adapters.GoalsAdapter;
+import donnu.zolotarev.dhoug.Adapters.DataSources.AllGoalsSortedData;
+import donnu.zolotarev.dhoug.Adapters.GoalsDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.GoalShowPage;
@@ -19,7 +20,7 @@ import java.io.Serializable;
 public class GoalsFragment extends MainBaseFragments {
 
 
-    private GoalsAdapter adapter;
+    private GoalsDBAdapter adapter;
 
     @Override
     public void onAttach(Activity activity) {
@@ -27,9 +28,8 @@ public class GoalsFragment extends MainBaseFragments {
         if (baseAdapted == null) {
             // todo remove test data
 
-            baseAdapted = new GoalsAdapter(activity,GoalItem.getAll());
-         //   baseAdapted = new GoalsAdapter(activity,(ArrayList)getData().get(ENTITY.GOALS));
-            adapter = (GoalsAdapter)baseAdapted;
+            baseAdapted = new GoalsDBAdapter(activity,new AllGoalsSortedData());
+            adapter = (GoalsDBAdapter)baseAdapted;
         }
         adapter.setClickListener(new IClick() {
             @Override
@@ -69,14 +69,12 @@ public class GoalsFragment extends MainBaseFragments {
             case AddGoalFragment.ADD_NEW:
                 GoalItem item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
-                adapter.add(item);
-                adapter.notifyDataSetChanged();
+                adapter.doQuery();
                 break;
             case AddGoalFragment.CHANGE:
                 item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
-                adapter.change(item);
-                adapter.notifyDataSetChanged();
+                adapter.doQuery();
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -92,6 +90,8 @@ public class GoalsFragment extends MainBaseFragments {
                 return true;
             case CM_DELETE:
                 GoalItem.delete(menuInfo.id);
+                adapter.notifyDataSetChanged();
+                adapter.doQuery();
                 return true;
         }
         return false;

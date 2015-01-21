@@ -8,10 +8,10 @@ import android.widget.BaseAdapter;
 
 public abstract class QuickAdapter extends BaseAdapter {
 
-    private final DataSource mDataSource;
-    private int mSize = 0;
-    private Cursor mRowIds = null;
-    private final Context mContext;
+    protected final DataSource mDataSource;
+    protected int mSize = 0;
+    protected Cursor mRowIds = null;
+    protected final Context mContext;
 
     public QuickAdapter(Context context, DataSource dataSource){
         mDataSource = dataSource;

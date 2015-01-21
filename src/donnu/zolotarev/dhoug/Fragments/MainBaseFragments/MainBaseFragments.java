@@ -2,10 +2,12 @@ package donnu.zolotarev.dhoug.Fragments.MainBaseFragments;
 
 import android.os.Bundle;
 import android.view.*;
-import android.widget.*;
+import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import donnu.zolotarev.dhoug.Adapters.IAdapter;
+import donnu.zolotarev.dhoug.Adapters.QuickAdapter;
 import donnu.zolotarev.dhoug.Fragments.BaseFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
@@ -16,7 +18,7 @@ abstract class MainBaseFragments extends BaseFragment {
     static final int CM_EDIT = 0;
     static final int CM_DELETE = 1;
 
-    protected ListAdapter baseAdapted;
+    protected QuickAdapter baseAdapted;
 
     @InjectView(R.id.list)
     protected ListView listView;
@@ -78,25 +80,5 @@ abstract class MainBaseFragments extends BaseFragment {
     @OnClick(R.id.goals_goals_period)
     void onPediod(){
         popupMenu.show();
-    }
-
-   /* @Override
-    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        menu.add(0, CM_EDIT, 0, R.string.context_menu_edit);
-        menu.add(0, CM_DELETE, 1, R.string.context_menu_delete);
-//        super.onCreateContextMenu(menu, v, menuInfo);
-    }*/
-
-
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-       switch (item.getItemId()){
-          case CM_DELETE:
-               ((IAdapter)baseAdapted).delete(menuInfo.position);
-               return true;
-       }
-        return false;
     }
 }
