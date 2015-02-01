@@ -80,6 +80,7 @@
         <item name="android:layout_marginLeft">@dimen/edit_text_padding</item>
         <item name="android:layout_marginRight">@dimen/edit_text_padding</item>
         <item name="android:textColor">@color/goal_item_title_text_color</item>
+        <item name="android:minHeight">@dimen/edit_text_min_height</item>
     </style>
     
     <style name="SimpleEditText.Picker">

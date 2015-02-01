@@ -10,7 +10,9 @@
                     android:layout_marginLeft="@dimen/default_separator_margin"
                     android:layout_marginRight="@dimen/goal_item_left_right_margin"
                     android:layout_marginTop="@dimen/goal_item_top_margin"
-                    android:layout_height="match_parent">
+        android:padding="@dimen/goal_item_left_right_padding"
+
+        android:layout_height="match_parent">
 
         <TextView style="@style/Text"
                   android:textSize="@dimen/primary_text_size"
