@@ -40,6 +40,9 @@ public abstract class SingleFragmentActivity extends Activity {
         if (addToBackStack){
             fragmentTransaction.addToBackStack(fragment.getClass().getSimpleName());
         }
+        fragmentTransaction.setCustomAnimations(
+                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
+                R.anim.card_flip_left_in, R.anim.card_flip_left_out);
         fragmentTransaction.replace(getContainerID(), fragment).commit();
     }
 

@@ -138,6 +138,13 @@ public class GoalsDBAdapter extends QuickAdapter {
     private View inflateTextView(ViewGroup viewGroup) {
         View view  = layoutInflater.inflate(R.layout.goal_text_separator, viewGroup, false);
         ((TextView)view.findViewById(R.id.text)).setText(R.string.goal_done);
+        view.setLongClickable(false);
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return true;
+            }
+        });
         return view;
     }
 
