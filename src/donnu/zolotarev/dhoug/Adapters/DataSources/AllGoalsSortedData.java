@@ -9,7 +9,7 @@ import donnu.zolotarev.dhoug.DataModels.GoalItem;
 public class AllGoalsSortedData implements QuickAdapter.DataSource {
     @Override
     public Cursor getRowIds() {
-        String query = new Select("Id").from(GoalItem.class).orderBy("isDone ASC").toSql();
+        String query = new Select("Id","isDone").from(GoalItem.class).orderBy("isDone ASC").toSql();
         return ActiveAndroid.getDatabase().rawQuery(query, null);
     }
 

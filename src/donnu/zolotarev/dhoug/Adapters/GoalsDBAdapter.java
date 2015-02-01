@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import butterknife.ButterKnife;
+
 import com.activeandroid.Model;
+
+import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
@@ -19,7 +21,7 @@ public class GoalsDBAdapter extends QuickAdapter {
     private final LayoutInflater layoutInflater;
     private IClick clickListener;
 
-    private int devider = -1;//Integer.MAX_VALUE;
+    private int devider = Integer.MAX_VALUE;
 
     public GoalsDBAdapter(Context context, DataSource dataSource) {
         super(context, dataSource);
@@ -28,49 +30,59 @@ public class GoalsDBAdapter extends QuickAdapter {
 
     @Override
     public void doQuery() {
+
+        Cursor cur = mDataSource.getRowIds();
+        int index = 0;
+        if (cur.moveToFirst()) {
+            do {
+                if (cur.getInt(cur.getColumnIndex("isDone")) == 1) {
+                    break;
+                }
+                index++;
+            } while ( cur.moveToNext());
+        }
+        devider = index;
+        cur.close();
         super.doQuery();
-        //SELECT * FROM SAMPLE_TABLE ORDER BY ROWID ASC LIMIT 1
-       /* String query = new Select("Id","isDone").from(GoalItem.class).orderBy("isDone ASC").toSql();
-        devider = ActiveAndroid.getDatabase().rawQuery(query, null).getPosition();*/
     }
 
     @Override
     public int getCount() {
-        return super.getCount()/*+1*/;
+        return super.getCount()+1;
     }
 
     @Override
     public Object getItem(int position) {
-     /*   if (position == devider) {
+        if (position == devider) {
             return null;
         }
-        int index = position < devider?position:position-1;*/
-        return super.getItem(position);
+        int index = position < devider?position:position-1;
+        return super.getItem(index);
     }
 
     @Override
     public long getItemId(int position) {
-      /*  if (position == devider) {
+        if (position == devider) {
             return 0;
         }
-        int index = position < devider?position:position-1;*/
-        return super.getItemId(position);
+        int index = position < devider?position:position-1;
+        return super.getItemId(index);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view;
-       /* if (position == devider) {
+        if (position == devider) {
             return inflateTextView(parent);
-        }*/
+        }
         if (convertView != null) {
             ViewHolder holder = (ViewHolder)convertView.getTag();
             if (holder == null) {
                 convertView = null;
             }
         }
-//        int index = position < devider?position:position-1;
-        view = super.getView(position, convertView, parent);
+        int index = position < devider?position:position-1;
+        view = super.getView(index, convertView, parent);
         return view;
     }
 
@@ -83,6 +95,7 @@ public class GoalsDBAdapter extends QuickAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         ViewHolder holder = (ViewHolder)view.getTag();
         final long id = cursor.getInt(cursor.getColumnIndex("Id"));
+
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -95,10 +108,11 @@ public class GoalsDBAdapter extends QuickAdapter {
                 }
             }
         });
+        holder.checkBox.setChecked(cursor.getInt(cursor.getColumnIndex("isDone")) == 1?true:false);
         holder.title.setText(cursor.getString(cursor.getColumnIndex("title")));
         holder.subTitle.setText(cursor.getString(cursor.getColumnIndex("description")));
 
-        holder.checkBox.setChecked(cursor.getInt(cursor.getColumnIndex("isDone")) == 1?true:false);
+
         view.setLongClickable(true);
 
         view.setOnClickListener(new View.OnClickListener() {

@@ -6,7 +6,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+
 import com.activeandroid.Model;
+
+import java.io.Serializable;
+
 import donnu.zolotarev.dhoug.Adapters.DataSources.AllGoalsSortedData;
 import donnu.zolotarev.dhoug.Adapters.GoalsDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
@@ -14,8 +18,6 @@ import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.GoalShowPage;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
-
-import java.io.Serializable;
 
 public class GoalsFragment extends MainBaseFragments {
 
@@ -30,6 +32,7 @@ public class GoalsFragment extends MainBaseFragments {
 
             baseAdapted = new GoalsDBAdapter(activity,new AllGoalsSortedData());
             adapter = (GoalsDBAdapter)baseAdapted;
+            adapter.doQuery();
         }
         adapter.setClickListener(new IClick() {
             @Override
