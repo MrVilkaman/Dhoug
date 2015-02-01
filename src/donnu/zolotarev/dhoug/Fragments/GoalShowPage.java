@@ -1,10 +1,20 @@
 package donnu.zolotarev.dhoug.Fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+
+import java.io.Serializable;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import donnu.zolotarev.dhoug.Adapters.DataSources.NotesForGoalData;
@@ -12,11 +22,10 @@ import donnu.zolotarev.dhoug.Adapters.NotesDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
+import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
-
-import java.io.Serializable;
 
 public class GoalShowPage extends BaseFragment {
 
@@ -93,15 +102,17 @@ public class GoalShowPage extends BaseFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-       // inflater.inflate(R.menu.yes_no_menu, menu);
+        inflater.inflate(R.menu.add_item, menu);
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_accept:
-                back();
+            case R.id.menu_add:
+                NoteItem obj = new NoteItem();
+                obj.setGoalId(goalItem.getId());
+                showFragment(AddNotesFragment.open(this, obj, AddBaseFragment.CHANGE), true);
                 return true;
         }
         return false;
@@ -113,4 +124,18 @@ public class GoalShowPage extends BaseFragment {
         popupMenu.setOnMenuItemClickListener(listener);
         return popupMenu;
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case AddGoalFragment.CHANGE:
+                    NoteItem item = (NoteItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
+                    item.save();
+                    noteAdapted.doQuery();
+                    break;
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }   
 }

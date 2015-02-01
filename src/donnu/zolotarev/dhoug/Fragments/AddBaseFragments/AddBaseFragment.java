@@ -1,14 +1,18 @@
 package donnu.zolotarev.dhoug.Fragments.AddBaseFragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import donnu.zolotarev.dhoug.Fragments.BaseFragment;
-import donnu.zolotarev.dhoug.R;
 
 import java.io.Serializable;
+
+import donnu.zolotarev.dhoug.Fragments.BaseFragment;
+import donnu.zolotarev.dhoug.R;
 
 public abstract class AddBaseFragment extends BaseFragment {
 
@@ -30,14 +34,13 @@ public abstract class AddBaseFragment extends BaseFragment {
         inflater.inflate(R.menu.yes_no_menu, menu);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         hideKeyboard();
         switch (item.getItemId()){
             case R.id.menu_accept:
                 if (isDataValid()) {
-                    sendResult(ADD_NEW);
+                    sendResult(Activity.RESULT_OK);
                     back();
                 }
                 return true;
