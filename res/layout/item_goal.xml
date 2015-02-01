@@ -26,7 +26,8 @@
                   android:textColor="@color/goal_item_title_text_color"
                   android:id="@+id/goal_item_title"
                   android:layout_alignParentTop="true"
-                  android:layout_alignParentLeft="true" android:layout_alignRight="@+id/goal_item_sub_title"/>
+                  android:layout_alignParentLeft="true" android:layout_alignRight="@+id/goal_item_sub_title"
+            android:singleLine="true" />
         <TextView
                 style="@style/Text"
                 android:text="@string/sub_title_stub"
