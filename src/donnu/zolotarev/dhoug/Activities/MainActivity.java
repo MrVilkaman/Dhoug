@@ -50,13 +50,13 @@ public class MainActivity extends SingleFragmentActivity  {
             @Override
             public void openGoals() {
                 clearBackStack();
-                loadRootFragment(new GoalsFragment(),true);
+                loadRootFragment(new GoalsFragment(),false);
             }
 
             @Override
             public void openNotes() {
                 clearBackStack();
-                loadRootFragment(new NotesFragment(),true);
+                loadRootFragment(new NotesFragment(),false);
             }
         };
     }
