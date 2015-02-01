@@ -4,10 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+import android.widget.PopupMenu;
+
+import java.io.Serializable;
+
 import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
@@ -15,8 +24,6 @@ import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
 import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Convertors;
-
-import java.io.Serializable;
 
 public class AddNotesFragment extends AddBaseFragment {
 
@@ -56,7 +63,6 @@ public class AddNotesFragment extends AddBaseFragment {
     public static AddNotesFragment createNew(NotesFragment notesFragment) {
         return open(notesFragment,null,ADD_NEW);
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -149,6 +155,13 @@ public class AddNotesFragment extends AddBaseFragment {
         noteItemTemp.setTitle(getText(title));
         noteItemTemp.setDiscription(getText(subtitle));
         return noteItemTemp;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        if (mode != SHOW) {
+            super.onCreateOptionsMenu(menu, inflater);
+        }
     }
 
     private PopupMenu.OnMenuItemClickListener notes_validate = new PopupMenu.OnMenuItemClickListener() {

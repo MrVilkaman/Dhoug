@@ -137,5 +137,5 @@ public class GoalShowPage extends BaseFragment {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
-    }   
+    }
 }
