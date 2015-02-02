@@ -10,7 +10,10 @@
                     android:background="@color/goal_item_backgrond_color"
                     android:layout_marginLeft="@dimen/goal_item_left_right_margin"
                     android:layout_marginRight="@dimen/goal_item_left_right_margin"
-                    android:padding="@dimen/goal_item_left_right_padding"
+                    android:paddingTop="@dimen/min_padding"
+                    android:paddingBottom="@dimen/min_padding"
+                    android:paddingRight="@dimen/goal_item_left_right_padding"
+                    android:paddingLeft="@dimen/goal_item_left_right_padding"
                     android:layout_marginTop="@dimen/goal_item_top_margin"
                     android:layout_height="match_parent">
         <CheckBox
