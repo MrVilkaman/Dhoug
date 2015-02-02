@@ -14,7 +14,7 @@
                 android:layout_alignParentLeft="true"
                 android:orientation="vertical"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content">
+                android:layout_width="match_parent">
             <Button style="@style/LeftMenuButton"
                     android:drawableLeft="@drawable/ic_action_location_found"
                     android:id="@+id/left_menu_goals"
