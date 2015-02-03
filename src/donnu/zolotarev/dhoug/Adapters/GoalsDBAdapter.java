@@ -30,7 +30,7 @@ public class GoalsDBAdapter extends QuickAdapter {
 
     @Override
     public void doQuery() {
-
+//1423085294322
         Cursor cur = mDataSource.getRowIds();
         int index = 0;
         if (cur.moveToFirst()) {

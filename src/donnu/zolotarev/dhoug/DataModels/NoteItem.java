@@ -4,10 +4,12 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
-import donnu.zolotarev.dhoug.Enums.NOTES_VALIDATE;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+
+import donnu.zolotarev.dhoug.Enums.NOTES_VALIDATE;
 
 @Table(name = "Notes")
 public class NoteItem  extends Model implements Serializable {
@@ -19,10 +21,13 @@ public class NoteItem  extends Model implements Serializable {
     private NOTES_VALIDATE validate;
     @Column(name = "goalId")
     private long goalId;
+    @Column(name = "createTime")
+    private Date createTime;
 
     public NoteItem() {
         validate = NOTES_VALIDATE.IN_PERPETUITY;
         goalId = -1;
+        createTime = new Date();
     }
 
     public String getTitle() {
@@ -70,5 +75,9 @@ public class NoteItem  extends Model implements Serializable {
         if (item != null) {
             item.delete();
         }
+    }
+
+    public Date getCreateTime() {
+        return createTime;
     }
 }

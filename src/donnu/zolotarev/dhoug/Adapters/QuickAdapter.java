@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import donnu.zolotarev.dhoug.Enums.TIME_PERIOD;
+
 public abstract class QuickAdapter extends BaseAdapter {
 
     protected final DataSource mDataSource;
@@ -76,6 +78,7 @@ public abstract class QuickAdapter extends BaseAdapter {
     public interface DataSource {
         Cursor getRowIds();
         Cursor getRowById(long rowId);
+        void setRepetition(TIME_PERIOD repetition);
     }
 
 }

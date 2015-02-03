@@ -4,11 +4,12 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
-import donnu.zolotarev.dhoug.Enums.GOAL_REPETITION;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+
+import donnu.zolotarev.dhoug.Enums.GOAL_REPETITION;
 
 @Table(name = "Goals")
 public class GoalItem extends Model implements Serializable {
@@ -25,14 +26,14 @@ public class GoalItem extends Model implements Serializable {
     @Column(name = "isDone")
     private boolean isDone = false;
 
-   // private ArrayList<UUID> notesID;
+    @Column(name = "createTime")
+    private Date createTime;
 
     public GoalItem() {
         super();
-     //   notesID = new ArrayList<UUID>();
         repetition = GOAL_REPETITION.NO;
         description = title = "";
-//        timeStart = timeEnd = new Date();
+        createTime = new Date();
     }
 
     public boolean isDone() {
@@ -82,18 +83,6 @@ public class GoalItem extends Model implements Serializable {
     public void setRepetition(GOAL_REPETITION repetition) {
         this.repetition = repetition;
     }
-/*
-    public void addNotes(NoteItem noteItem) {
-        notesID.add(noteItem.getId());
-    }
-
-    public void deleteNote(NoteItem noteItem) {
-        notesID.remove(noteItem.getId());
-    }
-
-    public ArrayList<UUID> getNotesID() {
-        return notesID;
-    }*/
 
     @Override
     public String toString() {
@@ -121,5 +110,9 @@ public class GoalItem extends Model implements Serializable {
         }else {
             return "";
         }
+    }
+
+    public Date getCreateTime() {
+        return createTime;
     }
 }

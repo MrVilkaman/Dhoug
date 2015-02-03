@@ -5,6 +5,7 @@ import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import donnu.zolotarev.dhoug.Adapters.QuickAdapter;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
+import donnu.zolotarev.dhoug.Enums.TIME_PERIOD;
 
 public class NotesForGoalData implements QuickAdapter.DataSource {
     private final Long id;
@@ -22,5 +23,10 @@ public class NotesForGoalData implements QuickAdapter.DataSource {
     public Cursor getRowById(long rowId) {
         String query = new Select().all().from(NoteItem.class).where("Id = ?").toSql();
         return ActiveAndroid.getDatabase().rawQuery(query, new String[]{Long.toString(rowId)});
+    }
+
+    @Override
+    public void setRepetition(TIME_PERIOD repetition) {
+
     }
 }

@@ -9,7 +9,7 @@ import com.activeandroid.Model;
 
 import java.io.Serializable;
 
-import donnu.zolotarev.dhoug.Adapters.DataSources.AllGoalsSortedData;
+import donnu.zolotarev.dhoug.Adapters.DataSources.GoalsSortedData;
 import donnu.zolotarev.dhoug.Adapters.GoalsDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
@@ -29,7 +29,8 @@ public class GoalsFragment extends MainBaseFragments {
         if (baseAdapted == null) {
             // todo remove test data
 
-            baseAdapted = new GoalsDBAdapter(activity,new AllGoalsSortedData());
+            data = new GoalsSortedData();
+            baseAdapted = new GoalsDBAdapter(activity,data);
             adapter = (GoalsDBAdapter)baseAdapted;
             adapter.doQuery();
         }
