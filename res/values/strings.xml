@@ -68,5 +68,10 @@
     <!--Цели полностью-->
     <string name="full_goal_notes_text">Заметки к цели</string>
 
+    <!--Диалог информации-->
+    <string name="alert_info_title">@string/left_menu_about</string>
+    <string name="about_text_version">%1$s версия %2$s</string>
+    <string name="about_email_btn_text">Напиши нам!</string>
+
 
 </resources>
