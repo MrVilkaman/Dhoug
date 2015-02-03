@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
-                android:layout_width = "match_parent"
-                android:background="@color/goals_backgrond_color"
-                android:orientation="vertical"
-                android:layout_height = "match_parent">
+    android:layout_width = "match_parent"
+    android:background="@color/goals_backgrond_color"
+    android:orientation="vertical"
+    android:layout_height = "match_parent">
     <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:layout_height="wrap_content">
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
         <TextView style="@style/GoalsText"
-                  android:paddingLeft="@dimen/default_separator_margin"
-                  android:text="@string/data_stub"
-                  android:id="@+id/goals_current_data"/>
+            android:paddingLeft="@dimen/default_separator_margin"
+            android:text="@string/data_stub"
+            android:id="@+id/goals_current_data"/>
         <View style="@style/Aggregator"/>
-        <TextView style="@style/GoalsText"
-                  android:paddingRight="0dp"
-                  android:text="@string/week_stub"
-                  android:id="@+id/goals_goals_period"/>
         <Button style="@style/IconButton"
-                android:paddingLeft="0dp"
-                android:paddingRight="@dimen/default_separator_margin"
-                android:drawableRight="@drawable/ic_action_go_to_today"
-                android:id="@+id/goals_calendar"
-                />
+            android:paddingLeft="0dp"
+            android:paddingRight="@dimen/default_separator_margin"
+            android:drawableRight="@drawable/ic_action_go_to_today"
+            android:id="@+id/goals_calendar"
+            android:visibility="invisible"
+            />
+        <TextView style="@style/GoalsText"
+            android:paddingRight="@dimen/default_separator_margin"
+            android:text="@string/week_stub"
+            android:id="@+id/goals_goals_period"/>
+
     </LinearLayout>
     <View style="@style/HSeparator"/>
     <ListView android:layout_width="match_parent"
         android:animateLayoutChanges="true"
-              android:id="@+id/list"
-              android:layout_height="match_parent">
+        android:id="@+id/list"
+        android:layout_height="match_parent">
     </ListView>
 
 </LinearLayout>

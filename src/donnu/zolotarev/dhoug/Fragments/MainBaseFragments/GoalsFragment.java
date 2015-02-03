@@ -60,8 +60,6 @@ public class GoalsFragment extends MainBaseFragments {
             case R.id.menu_add:
                 showFragment(AddGoalFragment.createNew(this), true);
                 return true;
-            case R.id.menu_edit:
-                return true;
         }
         return false;
     }

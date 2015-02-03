@@ -4,7 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.AdapterView;
+
 import com.activeandroid.Model;
+
+import java.io.Serializable;
+
 import donnu.zolotarev.dhoug.Adapters.DataSources.AllNotesData;
 import donnu.zolotarev.dhoug.Adapters.NotesDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.NoteItem;
@@ -13,8 +17,6 @@ import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
-
-import java.io.Serializable;
 
 public class NotesFragment extends MainBaseFragments {
 
@@ -49,8 +51,6 @@ public class NotesFragment extends MainBaseFragments {
             case R.id.menu_add:
                 AddNotesFragment notesFragment = AddNotesFragment.createNew(this);
                 showFragment(notesFragment, true);
-                return true;
-            case R.id.menu_edit:
                 return true;
         }
         return false;
