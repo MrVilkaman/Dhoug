@@ -2,9 +2,7 @@ package donnu.zolotarev.dhoug.Fragments.MainBaseFragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.AdapterView;
 
 import com.activeandroid.Model;
@@ -50,8 +48,8 @@ public class GoalsFragment extends MainBaseFragments {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected int getTitleId() {
+        return R.string.left_menu_goals;
     }
 
     @Override

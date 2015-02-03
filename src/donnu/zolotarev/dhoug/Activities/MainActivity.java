@@ -21,6 +21,7 @@ public class MainActivity extends SingleFragmentActivity  {
     private DrawerLayout drawerLayout;
 
     private IOpenMenu openMenu;
+    private LeftMenuFragmenu myFragment;
 
     @Override
     protected Fragment createFragment() {
@@ -38,14 +39,12 @@ public class MainActivity extends SingleFragmentActivity  {
     private void createLeftPanel() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         FragmentManager fm = getFragmentManager();
-        Fragment myFragment = fm.findFragmentById(R.id.menu_frame);
         if (myFragment == null){
             myFragment = new LeftMenuFragmenu();
             fm.beginTransaction()
                     .add(R.id.menu_frame, myFragment)
                     .commit();
         }
-
         openMenu = new IOpenMenu() {
             @Override
             public void openGoals() {
@@ -113,5 +112,9 @@ public class MainActivity extends SingleFragmentActivity  {
         for(int i = 0, max = fManager.getBackStackEntryCount(); i < max; i++){
             fManager.popBackStack();
         }
+    }
+
+    public void setTitleText(int text){
+        myFragment.setTitle(text);
     }
 }

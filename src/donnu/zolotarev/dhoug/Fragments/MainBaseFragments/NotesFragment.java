@@ -90,4 +90,9 @@ public class NotesFragment extends MainBaseFragments {
         }
         return false;
     }
+
+    @Override
+    protected int getTitleId() {
+        return R.string.left_menu_nots;
+    }
 }

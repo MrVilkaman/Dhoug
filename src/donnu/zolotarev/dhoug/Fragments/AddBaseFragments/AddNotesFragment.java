@@ -172,4 +172,9 @@ public class AddNotesFragment extends AddBaseFragment {
             return false;
         }
     };
+
+    @Override
+    protected int getTitleId() {
+        return R.string.add_note_action_bar_title;
+    }
 }

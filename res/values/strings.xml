@@ -2,6 +2,12 @@
 <resources>
     <string name = "app_name">Dhoug</string>
 
+    <!--Заглушки-->
+    <string name="data_stub">99 января 2015</string>
+    <string name="week_stub">Неделя</string>
+    <string name="title_stub">Заголовок Заголовок Заголовок Заголовок Заголовок Заголовок </string>
+    <string name="sub_title_stub">Описание ну оооочень длинное! Такое длинно, что аж не влазит!</string>
+
     <!--Общие-->
     <string name="default_alert_title">Внимание!</string>
 
@@ -14,13 +20,6 @@
     <string name = "left_menu_settings">Настройки</string>
     <string name = "left_menu_about">Информация</string>
     <string name = "left_menu_search">Поиск</string>
-
-
-    <!--Заглушки-->
-    <string name="data_stub">99 января 2015</string>
-    <string name="week_stub">Неделя</string>
-    <string name="title_stub">Заголовок Заголовок Заголовок Заголовок Заголовок Заголовок </string>
-    <string name="sub_title_stub">Описание ну оооочень длинное! Такое длинно, что аж не влазит!</string>
 
     <!--Цели-->
     <string name="goal_done">Выполнено</string>
@@ -73,5 +72,9 @@
     <string name="about_text_version">%1$s версия %2$s</string>
     <string name="about_email_btn_text">Напиши нам!</string>
 
+    <!--Заголовки-->
+    <string name="full_goal_title">Подробное описание цели</string>
+    <string name="add_note_action_bar_title">Добавление заметки</string>
+    <string name="add_goal_action_bar_title">Добавление цели</string>
 
 </resources>

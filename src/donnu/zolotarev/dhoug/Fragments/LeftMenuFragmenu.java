@@ -24,7 +24,7 @@ public class LeftMenuFragmenu extends BaseFragment {
 
 
     private DrawerLayout drawerLayout;
-    private int lastTitle = R.string.left_menu_goals;;
+    private CharSequence lastTitle = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,13 +39,16 @@ public class LeftMenuFragmenu extends BaseFragment {
             @Override
             public void onDrawerOpened(View view) {
                 ActionBar bar = getActivity().getActionBar();
+                lastTitle = bar.getTitle();
                 bar.setTitle(R.string.app_name);
             }
 
             @Override
             public void onDrawerClosed(View view) {
-                ActionBar bar = getActivity().getActionBar();
-                bar.setTitle(lastTitle);
+                if (lastTitle != null) {
+                    ActionBar bar = getActivity().getActionBar();
+                    bar.setTitle(lastTitle);
+                }
             }
 
             @Override
@@ -53,9 +56,6 @@ public class LeftMenuFragmenu extends BaseFragment {
 
             }
         });
-
-        ActionBar bar = getActivity().getActionBar();
-        bar.setTitle(lastTitle);
         return view;
     }
 
@@ -63,18 +63,16 @@ public class LeftMenuFragmenu extends BaseFragment {
     void onClick(View view){
         switch (view.getId()) {
             case R.id.left_menu_goals:
-                lastTitle = R.string.left_menu_goals;
                 getMenu().openGoals();
                 break;
             case R.id.left_menu_nots:
-                lastTitle = R.string.left_menu_nots;
                 getMenu().openNotes();
                 break;
             case R.id.left_menu_about:
                 openAbout();
                 break;
         }
-
+        lastTitle = null;
         drawerLayout.closeDrawers();
     }
 
@@ -125,5 +123,14 @@ public class LeftMenuFragmenu extends BaseFragment {
 
     private IOpenMenu getMenu(){
         return  ((MainActivity)getActivity()).getOpenMenu();
+    }
+
+    public void setTitle(int about_email_btn_text) {
+        getActivity().getActionBar().setTitle(about_email_btn_text);
+    }
+
+    @Override
+    protected int getTitleId() {
+        return 0;
     }
 }

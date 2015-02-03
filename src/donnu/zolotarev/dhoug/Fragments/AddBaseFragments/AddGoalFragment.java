@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+
+import java.io.Serializable;
+import java.util.Date;
+
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -21,9 +25,6 @@ import donnu.zolotarev.dhoug.R;
 import donnu.zolotarev.dhoug.Utils.Constants;
 import donnu.zolotarev.dhoug.Utils.Convertors;
 import donnu.zolotarev.dhoug.Utils.Utils;
-
-import java.io.Serializable;
-import java.util.Date;
 
 public class AddGoalFragment extends AddBaseFragment {
     @InjectView(R.id.add_goal_repeat)
@@ -212,4 +213,9 @@ public class AddGoalFragment extends AddBaseFragment {
             return true;
         }
     };
+
+    @Override
+    protected int getTitleId() {
+        return R.string.add_goal_action_bar_title;
+    }
 }

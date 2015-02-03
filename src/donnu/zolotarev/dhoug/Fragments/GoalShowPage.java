@@ -69,7 +69,7 @@ public class GoalShowPage extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-            noteAdapted = new NotesDBAdapter(getActivity(), new NotesForGoalData(goalItem.getId()));
+        noteAdapted = new NotesDBAdapter(getActivity(), new NotesForGoalData(goalItem.getId()));
         noteAdapted.setClickListener(new IClick() {
             @Override
             public void click(Serializable goalItem) {
@@ -137,5 +137,10 @@ public class GoalShowPage extends BaseFragment {
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    protected int getTitleId() {
+        return R.string.full_goal_title;
     }
 }

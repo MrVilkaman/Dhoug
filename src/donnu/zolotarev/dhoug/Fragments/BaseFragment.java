@@ -10,11 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+
 import butterknife.ButterKnife;
+import donnu.zolotarev.dhoug.Activities.MainActivity;
 import donnu.zolotarev.dhoug.Activities.SingleFragmentActivity;
 import donnu.zolotarev.dhoug.R;
 
-public class BaseFragment extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
 
     protected View inflateFragmentView(int layoutResource, LayoutInflater inflater, ViewGroup container) {
@@ -22,6 +24,9 @@ public class BaseFragment extends Fragment {
         ButterKnife.inject(this, view);
         return view;
     }
+
+
+    protected abstract int getTitleId();
 
     @Override
     public void onDestroyView() {
@@ -92,10 +97,10 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    protected SingleFragmentActivity getMainActivity(){
+    protected MainActivity getMainActivity(){
         Activity activity = getActivity();
-        if(activity != null && activity instanceof SingleFragmentActivity){
-            return (SingleFragmentActivity) activity;
+        if(activity != null && activity instanceof MainActivity){
+            return (MainActivity) activity;
         }
 
         return null;
@@ -121,4 +126,12 @@ public class BaseFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        int id = getTitleId();
+        if (id != 0) {
+            getMainActivity().setTitleText(id);
+        }
+    }
 }
