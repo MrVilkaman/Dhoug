@@ -14,6 +14,7 @@ import donnu.zolotarev.dhoug.Adapters.GoalsDBAdapter;
 import donnu.zolotarev.dhoug.DataModels.GoalItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.GoalShowPage;
+import donnu.zolotarev.dhoug.Interface.IAnalytics;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
@@ -69,11 +70,13 @@ public class GoalsFragment extends MainBaseFragments {
                 GoalItem item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
                 adapter.doQuery();
+                getAnalytics().sendReport(IAnalytics.GOAL,IAnalytics.ACTION_ADD);
                 break;
             case AddGoalFragment.CHANGE:
                 item = (GoalItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
                 adapter.doQuery();
+                getAnalytics().sendReport(IAnalytics.GOAL,IAnalytics.ACTION_CHANGE);
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -92,6 +95,7 @@ public class GoalsFragment extends MainBaseFragments {
                 GoalItem.delete(menuInfo.id);
                 adapter.notifyDataSetChanged();
                 adapter.doQuery();
+                getAnalytics().sendReport(IAnalytics.GOAL, IAnalytics.ACTION_DELETE);
                 return true;
         }
         return false;

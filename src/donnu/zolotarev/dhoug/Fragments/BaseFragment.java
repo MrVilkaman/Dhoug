@@ -14,6 +14,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import donnu.zolotarev.dhoug.Activities.MainActivity;
 import donnu.zolotarev.dhoug.Activities.SingleFragmentActivity;
+import donnu.zolotarev.dhoug.Interface.IAnalytics;
 import donnu.zolotarev.dhoug.R;
 
 public abstract class BaseFragment extends Fragment {
@@ -98,12 +99,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected MainActivity getMainActivity(){
-        Activity activity = getActivity();
-        if(activity != null && activity instanceof MainActivity){
-            return (MainActivity) activity;
-        }
-
-        return null;
+        return (MainActivity) getActivity();
     }
 
     protected void showFragment(BaseFragment fragment, boolean addToBackStack) {
@@ -133,5 +129,9 @@ public abstract class BaseFragment extends Fragment {
         if (id != 0) {
             getMainActivity().setTitleText(id);
         }
+    }
+
+    public IAnalytics getAnalytics(){
+        return (IAnalytics)getActivity();
     }
 }

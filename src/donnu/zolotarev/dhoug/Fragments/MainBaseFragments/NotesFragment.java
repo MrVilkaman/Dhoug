@@ -15,6 +15,7 @@ import donnu.zolotarev.dhoug.DataModels.NoteItem;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddBaseFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddGoalFragment;
 import donnu.zolotarev.dhoug.Fragments.AddBaseFragments.AddNotesFragment;
+import donnu.zolotarev.dhoug.Interface.IAnalytics;
 import donnu.zolotarev.dhoug.Interface.IClick;
 import donnu.zolotarev.dhoug.R;
 
@@ -63,11 +64,13 @@ public class NotesFragment extends MainBaseFragments {
                 NoteItem item = (NoteItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
                 adapter.doQuery();
+                getAnalytics().sendReport(IAnalytics.NOTE, IAnalytics.ACTION_ADD);
             break;
             case AddGoalFragment.CHANGE:
                 item = (NoteItem) data.getExtras().getSerializable(AddGoalFragment.ITEM);
                 item.save();
                 adapter.doQuery();
+                getAnalytics().sendReport(IAnalytics.NOTE, IAnalytics.ACTION_CHANGE);
                 break;
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -86,6 +89,7 @@ public class NotesFragment extends MainBaseFragments {
                 NoteItem.delete(menuInfo.id);
                 adapter.notifyDataSetChanged();
                 adapter.doQuery();
+                getAnalytics().sendReport(IAnalytics.NOTE, IAnalytics.ACTION_DELETE);
                 return true;
         }
         return false;

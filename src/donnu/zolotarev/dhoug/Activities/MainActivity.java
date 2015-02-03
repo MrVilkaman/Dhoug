@@ -10,13 +10,20 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
+
 import donnu.zolotarev.dhoug.Fragments.LeftMenuFragmenu;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.GoalsFragment;
 import donnu.zolotarev.dhoug.Fragments.MainBaseFragments.NotesFragment;
+import donnu.zolotarev.dhoug.Interface.IAnalytics;
 import donnu.zolotarev.dhoug.Interface.IOpenMenu;
 import donnu.zolotarev.dhoug.R;
+import donnu.zolotarev.dhoug.Utils.Constants;
 
-public class MainActivity extends SingleFragmentActivity  {
+public class MainActivity extends SingleFragmentActivity implements IAnalytics {
 
     private DrawerLayout drawerLayout;
 
@@ -33,6 +40,18 @@ public class MainActivity extends SingleFragmentActivity  {
         super.onCreate(savedInstanceState);
         setupTabs();
         createLeftPanel();
+        initAnalytics();
+    }
+
+    private void initAnalytics() {
+        if (Constants.NEED_ANALYTICS) {
+            GoogleAnalytics.getInstance(this).enableAutoActivityReports(getApplication());
+
+            try {
+                GoogleAnalytics.getInstance(this).dispatchLocalHits();
+            } catch (Exception e) {
+            }
+        }
     }
 
 
@@ -116,5 +135,49 @@ public class MainActivity extends SingleFragmentActivity  {
 
     public void setTitleText(int text){
         myFragment.setTitle(text);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (Constants.NEED_ANALYTICS) {
+            GoogleAnalytics.getInstance(this).dispatchLocalHits();
+            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (Constants.NEED_ANALYTICS) {
+            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+        }
+    }
+
+    @Override
+    public void sendReport(String category,String action){
+        sendReport(category, action,null);
+    }
+
+    @Override
+    public void sendReport(String category,String action, String label){
+        if (Constants.NEED_ANALYTICS) {
+            try {
+                Tracker tracker = GoogleAnalytics.getInstance(MainActivity.this).newTracker(Constants.ANALISTYC_TRACER_ID);
+
+                HitBuilders.EventBuilder builder =  new HitBuilders.EventBuilder();
+                if (category != null) {
+                    builder.setCategory(category);
+                }
+                if (action != null) {
+                    builder.setAction(action);
+                }
+                if (label != null) {
+                    builder.setLabel(label);
+                }
+                tracker.send(builder.build());
+            } catch (Exception e) {
+            }
+        }
     }
 }
