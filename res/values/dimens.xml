@@ -12,6 +12,7 @@
 
     <!--Left menu-->
     <dimen name="left_menu_button_text_size">@dimen/primary_text_size</dimen>
+    <dimen name="left_menu_button_botton_margin">8dp</dimen>
 
     <!--Цели-->
     <dimen name="goal_item_top_margin">8dp</dimen>
@@ -19,5 +20,6 @@
     <dimen name="goal_item_left_right_padding">8dp</dimen>
     <dimen name="goal_checkbox_right_padding">4dp</dimen>
     <dimen name="edit_text_padding">@dimen/default_separator_margin</dimen>
+
 
 </resources>

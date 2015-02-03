@@ -1,11 +1,15 @@
 package donnu.zolotarev.dhoug.Fragments.Dialogs;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,12 +58,13 @@ public class DialogFragment extends android.app.DialogFragment {
         View view = null;
 
             view = inflateFragmentView(R.layout.fragment_dialog, inflater, null);
-
+//
             if (viewResId != 0){
                 View view2 =  inflater.inflate(viewResId,null, true);
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT
                 );
+                setMinimum(view2);
                 lp.setMargins(10,5,10,5);
                 view2.setLayoutParams(lp);
                 linearLayout.addView(view2);
@@ -95,6 +100,22 @@ public class DialogFragment extends android.app.DialogFragment {
 //        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
 
         return view;
+    }
+
+    private void setMinimum(View view) {
+        Point p = getScreenSize(getActivity());
+        view.setMinimumWidth(p.x);
+        view.setMinimumHeight(p.y/2);
+    }
+
+    private static Display getDefaultDisplay(Context context) {
+        return ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+    }
+
+    private static Point getScreenSize(Context context) {
+        Point screeSize = new Point();
+        getDefaultDisplay(context).getSize(screeSize);
+        return screeSize;
     }
 
     @Override
