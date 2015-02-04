@@ -1,80 +1,80 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name = "app_name">Dhoug</string>
 
     <!--Заглушки-->
-    <string name="data_stub">99 января 2015</string>
-    <string name="week_stub">Неделя</string>
-    <string name="title_stub">Заголовок Заголовок Заголовок Заголовок Заголовок Заголовок </string>
-    <string name="sub_title_stub">Описание ну оооочень длинное! Такое длинно, что аж не влазит!</string>
+    <string name="data_stub">99 January 2015</string>
+    <string name="week_stub">Week</string>
+    <string name="title_stub">Title Title Title Title Title Title</string>
+    <string name="sub_title_stub">Description Well sooooo long! So long, that already can not fit!</string>
 
     <!--Общие-->
-    <string name="default_alert_title">Внимание!</string>
+    <string name="default_alert_title">Caution!</string>
 
     <!--Левое меню-->
-    <string name = "left_menu_goals">Цели</string>
-    <string name = "left_menu_nots">Заметки</string>
-    <string name = "left_menu_tasks">Задачи</string>
-    <string name = "left_menu_buys">Список покупок</string>
+    <string name = "left_menu_goals">Objectives</string>
+    <string name = "left_menu_nots">Notes</string>
+    <string name = "left_menu_tasks">Tasks</string>
+    <string name = "left_menu_buys">Shopping List</string>
 
-    <string name = "left_menu_settings">Настройки</string>
-    <string name = "left_menu_about">Информация</string>
-    <string name = "left_menu_search">Поиск</string>
+    <string name = "left_menu_settings">Settings</string>
+    <string name = "left_menu_about">Information</string>
+    <string name = "left_menu_search">Search</string>
 
     <!--Цели-->
-    <string name="goal_done">Выполнено</string>
+    <string name="goal_done">Achieved</string>
 
-    <string name="add_goal_title">Название цели</string>
-    <string name="add_goal_subtitle">Описание цели</string>
-    <string name="add_goal_begin">Начало</string>
-    <string name="add_goal_end">Окончание</string>
-    <string name="add_goal_repeat">Повторять</string>
+    <string name="add_goal_title">Goal name</string>
+    <string name="add_goal_subtitle">Description of the purpose</string>
+    <string name="add_goal_begin">Beginning</string>
+    <string name="add_goal_end">Ending</string>
+    <string name="add_goal_repeat">Repeat</string>
 
     <!--Цели диалоги-->
-    <string name="error_text_empty_title">Заголовок не может быть пустым!</string>
-    <string name="error_text_data_not_valid">Выбрана не верная дата!</string>
+    <string name="error_text_empty_title">Title can not be empty!</string>
+    <string name="error_text_data_not_valid">Not the correct date!</string>
 
     <!--Всплывающее меню периода-->
-    <string name="period_day">День</string>
-    <string name="period_week">Неделя</string>
-    <string name="period_mounth">Месяц</string>
-    <string name="period_all">Все цели</string>
+    <string name="period_day">Day</string>
+    <string name="period_week">Week</string>
+    <string name="period_mounth">Month</string>
+    <string name="period_all">All goals</string>
 
     <!--Всплывающее меню периода-->
-    <string name="add_period_never">Не повторять</string>
-    <string name="add_period_every_day">Ежедневно</string>
-    <string name="add_period_every_week">Еженедельно</string>
-    <string name="add_period_every_mounth">Ежемесячно</string>
+    <string name="add_period_never">Do not repeat</string>
+    <string name="add_period_every_day">Daily</string>
+    <string name="add_period_every_week">Weekly</string>
+    <string name="add_period_every_mounth">Monthly</string>
 
     <!--Заметки-->
-    <string name="add_note_to_goal">Прикреплять к цели</string>
-    <string name="add_note_validity">Срок действия заметки</string>
-    <string name="add_note_title">Название цели</string>
-    <string name="add_note_subtitle">Описание цели</string>
+    <string name="add_note_to_goal">Attach to the target</string>
+    <string name="add_note_validity">Validity notes</string>
+    <string name="add_note_title">Title notes</string>
+    <string name="add_note_subtitle">Description notes</string>
 
-    <string name="note_to_goal_not_attached">Не прикреплять</string>
+    <string name="note_to_goal_not_attached">Not attached</string>
 
     <!--Всплывающее меню время жизни заметки-->
-    <string name="notes_validate_in_perpetuity">Бессрочно</string>
-    <string name="notes_validate_week">Неделя</string>
-    <string name="notes_validate_mounth">Месяц</string>
-    <string name="notes_validate_year">Год</string>
+    <string name="notes_validate_in_perpetuity">In perpetuity</string>
+    <string name="notes_validate_week">Week</string>
+    <string name="notes_validate_mounth">Month</string>
+    <string name="notes_validate_year">Year</string>
 
     <!--Конекстное меню для listview-->
-    <string name="context_menu_edit">Редактировать</string>
-    <string name="context_menu_delete">Удалить</string>
+    <string name="context_menu_edit">Edit</string>
+    <string name="context_menu_delete">Remove</string>
 
     <!--Цели полностью-->
-    <string name="full_goal_notes_text">Заметки к цели</string>
+    <string name="full_goal_notes_text">Notes to the goal</string>
 
     <!--Диалог информации-->
     <string name="alert_info_title">@string/left_menu_about</string>
-    <string name="about_text_version">%1$s версия %2$s</string>
-    <string name="about_email_btn_text">Напиши нам!</string>
+    <string name="about_text_version">%1$s version %2$s</string>
+    <string name="about_email_btn_text">Contact Us!</string>
 
     <!--Заголовки-->
-    <string name="full_goal_title">Подробное описание цели</string>
-    <string name="add_note_action_bar_title">Добавление заметки</string>
-    <string name="add_goal_action_bar_title">Добавление цели</string>
+    <string name="full_goal_title">A detailed description of the purpose</string>
+    <string name="add_note_action_bar_title">Adding notes</string>
+    <string name="add_goal_action_bar_title">Adding goals</string>
 
 </resources>
